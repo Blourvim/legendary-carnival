@@ -4,7 +4,7 @@ import User from '../models/Schemas/userSchema';
 import bcrypt from 'bcrypt';
 
 
-export default  initialize =(passport)=>{
+ const initialize =(passport)=>{
 
     passport.use(new LocalStrategy.Strategy(
         function(username, password, done) {
@@ -18,7 +18,7 @@ export default  initialize =(passport)=>{
       ));
 }
  //lets keep as reminder
-//const LocalStrategy = require('passport-local').Strategy;
+//const LocalStrategy === require('passport-local').Strategy; ===LocalStrategy.Strategy
 
 
 passport.serializeUser((user, done) => {

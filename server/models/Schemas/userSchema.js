@@ -1,8 +1,6 @@
 import bcrypt from "bcrypt";
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
-import validator from 'validator';
-import jwt from "jsonwebtoken";
   
   const userSchema = mongoose.Schema({
       name: {
@@ -26,12 +24,6 @@ import jwt from "jsonwebtoken";
           required: true,
          // minLength: 7
       },
-    tokens: [{
-          token: {
-              type: String,
-              required: true
-          }
-      }],
     posts:[  
       
           
@@ -39,9 +31,6 @@ import jwt from "jsonwebtoken";
     comments:[{ 
             type:String
           }],
-    ratings:[{
-        type:Number
-    }],
     private:{
           type:Boolean,
           default:false,
@@ -52,16 +41,6 @@ import jwt from "jsonwebtoken";
     friendInvites:[{
           type:String
         }],
-        //recomended items
-            item:[{
-                type:String
-            }],
-              by:[{
-                type:String
-            }],
-              msg:[{
-                type:String   
-    }]
   })
   
  /**  userSchema.pre('save', async function (next) {
