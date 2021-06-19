@@ -28,7 +28,7 @@ passport.serializeUser((user, cb) => {
 });
 
 passport.deserializeUser((userId, cb) => {
-  User.findById(userId)
+  UserModal.findById(userId)
       .then((user) => {
           cb(null, user);
       })
@@ -76,10 +76,8 @@ app.use(passport.session());
 
 
   passport.use(new LocalStrategy.Strategy(
-      function(usernames, password, cb) {
-        console.log(password)
-        console.log(usernames)
-        UserModal.findOne({ email: usernames }, (err, user)=> {
+      function(username, password, cb) {
+        UserModal.findOne({ email: username }, (err, user)=> {
           if (err) { return cb(err); }
           if (!user) { return cb(null, false); }
           if (!bcrypt.compare(password,user.password,)) { return cb(null, false); }
