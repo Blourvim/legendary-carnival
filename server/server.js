@@ -17,12 +17,6 @@ import bcrypt from 'bcrypt';
 const app = express();
 
 
-app.use((req,res,next)=>{
-  console.log(req.body);
-  console.log(req.user);
- next();
-})
-
 passport.serializeUser((user, cb) => {
   cb(null, user.id);
 });
@@ -85,10 +79,6 @@ app.use(passport.session());
         });
       }
     ));
-
-//lets keep as reminder
-//const LocalStrategy === require('passport-local').Strategy; ===LocalStrategy.Strategy
-
 
 
 app.use(cors());

@@ -11,10 +11,8 @@ const secret = process.env.PASSWORD_SECRET
 
     try {
         if (!await UserModal.exists({email:email})){
-            console.log('gone trough the if')
             await bcrypt.hash(plaintextPassword, 10)
             .then(async(hash)=> {
-                console.log(hash)
                  UserModal.create({
                     name:name,
                     email:email,

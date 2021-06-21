@@ -5,7 +5,7 @@ import {isAuth} from '../middleware/auth.js'
 const router = express.Router();
 
 
-router.post('/signin', (req,res,next)=>{console.log(res);next()},
+router.post('/signin',
 passport.authenticate('local',
  { failureRedirect: '/signin-failure',
   successRedirect: '/signin-success' }),(err,req,res,next)=>{console.log(err); next()});
@@ -15,7 +15,7 @@ passport.authenticate('local',
 
 
  router.get('/p',isAuth,(req,res,next)=>{
-    res.send('protected-route-secret');
+    res.send(req.user);
 })
 
 
@@ -26,9 +26,7 @@ router.get('/signout',isAuth,(req,res,next)=>{
 })
 
 
-
-// When you visit http://localhost:3000/login, you will see "Login Page"
-router.get('/login', (req, res, next) => {
+router.get('/signin', (req, res, next) => {
    
     const form = '<h1>Login Page</h1><form method="POST" action="/signin">\
     Enter Username:<br><input type="text" name="username">\
@@ -38,9 +36,6 @@ router.get('/login', (req, res, next) => {
     res.send(form);
 
 });
-
-
-router.post('/',async(req,res)=>{console.log(typeof(req.body))});
 
 
 export default router;
