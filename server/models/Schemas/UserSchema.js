@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import mongoose from 'mongoose';
+import  isEmail  from 'validator';
 const { Schema } = mongoose;
   
   const userSchema = mongoose.Schema({
@@ -13,21 +14,18 @@ const { Schema } = mongoose;
           required: true,
           unique: true,
           lowercase: true,
-         // validate: value => {
-           //   if (!validator.isEmail(value)) {
-             //     throw new Error({error: 'Invalid Email address'})
-              //}
-          //}
+        //  validate: value => {
+        //      if (!validator.isEmail(value)) {
+        //          throw new Error({error: 'Invalid Email address'})
+        //       }
+        //   }
       },
       password: {
           type: String,
           required: true,
          // minLength: 7
       },
-    posts:[  
-      
-          
-        ],
+    posts:[],
     comments:[{ 
             type:String
           }],

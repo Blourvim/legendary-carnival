@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import UserModal from "../models/Schemas/userSchema.js";
+import UserModal from "../models/Schemas/UserSchema.js";
 import isEmail from 'validator/lib/isEmail.js';
 
 const secret = process.env.PASSWORD_SECRET

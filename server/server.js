@@ -8,11 +8,12 @@ import mongoose from "mongoose";
 import LocalStrategy from 'passport-local';
 
 import indexRoutes from "./routes/index.js";
+import postRoutes from "./routes/posts.js";
 import passport from "passport";
 
 import session from 'express-session';
 import MongoStore from 'connect-mongo';
-import UserModal from './models/Schemas/userSchema.js';
+import UserModal from './models/Schemas/UserSchema.js';
 import bcrypt from 'bcrypt';
 const app = express();
 
@@ -84,3 +85,4 @@ app.use(passport.session());
 app.use(cors());
 
 app.use('/',indexRoutes);
+app.use('/post',postRoutes);
