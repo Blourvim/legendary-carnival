@@ -25,7 +25,16 @@ export const favorite =async(req,res)=>{
     } catch (error) {
         console.log(error)
     }
-          
     }
+}
+
+export const comment =async(req,res)=>{
+    const comment = req.body.comment;
+    const user = req.user
+    const tweet ="60d4236f873f204b49efe25e";
+   const target = await Tweet.findById(tweet)
+   target.addComment(user,comment,()=>{console.log("saved")})
+
+
 
 }

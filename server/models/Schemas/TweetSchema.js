@@ -78,44 +78,21 @@ TweetSchema.methods = {
   addComment: function(user, comment, cb) {
     if (user.name) {
       this.comments.push({
-        body: comment.body,
+        body: comment,
         user: user._id,
         commenterName: user.name,
-        commenterPicture: user.github.avatar_url
       });
       this.save(cb);
     } else {
       this.comments.push({
-        body: comment.body,
+        body: comment,
         user: user._id,
         commenterName: user.username,
-        commenterPicture: user.github.avatar_url
       });
 
       this.save(cb);
     }
   },
-   addComment: function(user, comment, cb) {
-    if (user.name) {
-      this.comments.push({
-        body: comment.body,
-        user: user._id,
-        commenterName: user.name,
-        commenterPicture: user.github.avatar_url
-      });
-      this.save(cb);
-    } else {
-      this.comments.push({
-        body: comment.body,
-        user: user._id,
-        commenterName: user.username,
-        commenterPicture: user.github.avatar_url
-      });
-
-      this.save(cb);
-    }
-  },
-
   removeComment: function(commentId, cb) {
     let index = utils.indexof(this.comments, { id: commentId });
     if (~index) {
