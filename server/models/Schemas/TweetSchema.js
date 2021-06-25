@@ -93,6 +93,18 @@ TweetSchema.methods = {
       this.save(cb);
     }
   },
+  unfavorite: function(userId,cb){
+    const index = this.favoriters.indexOf(userId)
+
+    if(index !== -1){
+      this.favoriters.splice(index,1)
+      this.favoritesCount--
+      this.save(cb);
+
+    }
+    
+
+  },
   removeComment: function(commentId, cb) {
     let index = utils.indexof(this.comments, { id: commentId });
     if (~index) {
