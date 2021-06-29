@@ -48,8 +48,6 @@ router.get('/feed',async(req,res)=>{
 
 router.get('/create',isAuth,(req,res)=>{
 
-
-
     const form = '<h1>Login Page</h1><form method="POST" action="/post/create">\
     Enter Username:<br><input type="text" name="text">\
     <br><br><input type="submit" value="Submit"></form>';

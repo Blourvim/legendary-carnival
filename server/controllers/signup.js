@@ -6,12 +6,12 @@ const secret = process.env.PASSWORD_SECRET
 
 
   const signup = async(req,res)=>{
-     const {name,email,plaintextPassword} =req.body;
-     console.log(!await UserModal.exists({email:email}))
-
-    try {
-        if (!await UserModal.exists({email:email})){
-            await bcrypt.hash(plaintextPassword, 10)
+      
+      try {
+          const {name,email,password} =req.body;
+          console.log(!await UserModal.exists({email:email}))
+          if (!await UserModal.exists({email:email})){
+            await bcrypt.hash(password, 10)
             .then(async(hash)=> {
                  UserModal.create({
                     name:name,

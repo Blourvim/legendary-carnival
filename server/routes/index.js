@@ -37,5 +37,18 @@ router.get('/signin', (req, res, next) => {
 
 });
 
+router.get('/signup',async(req,res)=>{
+
+
+    const form = '<h1>Login Page</h1><form method="POST" action="/signup">\
+    Enter Username:<br><input type="text" name="name">\
+    Enter Username:<br><input type="text" name="email">\
+    Enter Username:<br><input type="text" name="password">\
+    <br><br><input type="submit" value="Submit"></form>';
+
+    res.send(form);
+
+})
+
 
 export default router;
