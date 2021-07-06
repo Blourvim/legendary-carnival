@@ -21,6 +21,7 @@ const PostsContainer =()=>{
 
 return(
   <Container
+ maxWidth="md"
   
    >
  <Grid  container
@@ -32,7 +33,7 @@ return(
    {items && items.map((item)=>{
 
   return(
-    <Grid item xs={4} spacing={4}>
+    <Grid item xs={6} spacing={4}>
 <PostsCard  bodyText={item.title}/>
 </Grid>
   )
