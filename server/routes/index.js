@@ -8,7 +8,9 @@ const router = express.Router();
 router.post('/signin',
 passport.authenticate('local',
  { failureRedirect: '/signin-failure',
-  successRedirect: '/signin-success' }),(err,req,res,next)=>{console.log(err); next()});
+  successRedirect:'/data' ,
+
+}),(err,req,res,next)=>{console.log(err);next()});
  
 
  router.post('/signup',signup)
@@ -47,6 +49,19 @@ router.get('/signup',async(req,res)=>{
     <br><br><input type="submit" value="Submit"></form>';
 
     res.send(form);
+
+})
+
+router.get('/data',async(req,res)=>{
+
+
+    const form = '<h1>Login Page</h1><form method="POST" action="/signup">\
+    Enter Username:<br><input type="text" name="name">\
+    Enter Username:<br><input type="text" name="email">\
+    Enter Username:<br><input type="text" name="password">\
+    <br><br><input type="submit" value="Submit"></form>';
+    console.log(req.user)
+    res.status(200).json(req.user);
 
 })
 

@@ -12,6 +12,7 @@ import postRoutes from "./routes/posts.js";
 import passport from "passport";
 
 import session from 'express-session';
+import cookieParser from 'cookie-parser';
 import MongoStore from 'connect-mongo';
 import UserModal from './models/Schemas/UserSchema.js';
 import bcrypt from 'bcrypt';
@@ -67,6 +68,7 @@ app.use(session({
     maxAge:1000 * 60 * 60 * 24
   }
 }));
+app.use(cookieParser(process.env.SESSION_SECRET));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -77,13 +79,19 @@ app.use(passport.session());
           if (err) { return cb(err); }
           if (!user) { return cb(null, false); }
           if (!bcrypt.compare(password,user.password,)) { return cb(null, false); }
+          console.log(user)
          return cb(null, user);
         });
       }
     ));
 
 
-app.use(cors());
+    app.use(cors( {
+      origin:"http://localhost:3000",
+      credentials:true
+      
+      }));
 
 app.use('/',indexRoutes);
 app.use('/post',postRoutes);
+

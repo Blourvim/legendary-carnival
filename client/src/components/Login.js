@@ -31,22 +31,43 @@ const Login=()=> {
     checkedB: true,
   });
 
+  const url = "http://localhost:4000"
+
   const handleChange = (event) => {
     setState({ ...state, [event.target.name]: event.target.checked });
   };
 
   const handleFormSubmit =(e)=>{
     e.preventDefault()
-
     if(state.checkedB)  //if sign in
     {
-
+      axios.post(`${url}/signin`, {
+        username: e.target.email.value,
+        password: e.target.password.value
+      },
+     {
+      withCredentials: true,
+     } 
+      )
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     }
 
 
-    console.log(e.target.email.value)
   }
+    axios({
+      method: "GET",
+      withCredentials: true,
+      url: "http://localhost:4000/p",
+    }).then((res) => {
+      console.log(res.data);
+      console.log("res.data");
 
+    });
   return (
       <Grid  container justify = "center">
           <div className={classes.container}>
@@ -90,6 +111,7 @@ autoComplete="current-password"
           id="standard-password-input"
           label="Password"
           type="password"
+          name="password"
           variant="filled" 
           autoComplete="current-password"
         />
