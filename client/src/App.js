@@ -6,6 +6,7 @@ import CreatePost from './components/CreatePost';
 function App() {
   return (
     <div>
+
         <PostsContainer/>
     </div>
   );

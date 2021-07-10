@@ -30,14 +30,14 @@ return(
  <Grid  container
  direction="row"
  justify="center"
- alignItems="strech"
+ spacing={4}
 >
    
    {items && items.map((item,index)=>{
 
   return(
-    <Grid key={index+item.body}item xs={6} spacing={4}>
-<PostsCard  bodyText={item.body}/>
+    <Grid item xs={6} key={index + item.body}>
+<PostsCard  id={item._id }body={item.body}/>
 </Grid>
   )
 

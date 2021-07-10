@@ -7,9 +7,13 @@ const router = express.Router();
 
 router.post('/create',isAuth,create);
 
+
+router.post('/like-post',isAuth,favorite)
+
+
 router.post('/xx',isAuth,favorite)
 
-router.post('/comment',isAuth,comment)
+router.post('/add-comment',isAuth,comment)
 
 
 router.get('/comment',async(req,res)=>{
