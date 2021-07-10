@@ -46,7 +46,7 @@ const Login=()=> {
         password: e.target.password.value
       },
      {
-      withCredentials: true,
+      withCredentials: true
      } 
       )
       .then(function (response) {
@@ -59,15 +59,6 @@ const Login=()=> {
 
 
   }
-    axios({
-      method: "GET",
-      withCredentials: true,
-      url: "http://localhost:4000/p",
-    }).then((res) => {
-      console.log(res.data);
-      console.log("res.data");
-
-    });
   return (
       <Grid  container justify = "center">
           <div className={classes.container}>

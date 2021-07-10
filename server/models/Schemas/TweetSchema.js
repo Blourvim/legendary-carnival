@@ -138,9 +138,9 @@ TweetSchema.statics = {
   limitedList: function(options) {
     const criteria = options.criteria || {};
     return this.find(criteria)
-      .populate("user", "name username")
+     // .populate("user", "name username")
       .sort({ createdAt: -1 })
-      .limit(options.perPage)
+      .limit(parseInt(options.perPage))
       .skip(options.perPage * options.page);
   },
   // Tweets of User

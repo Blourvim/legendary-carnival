@@ -9,11 +9,14 @@ import Grid from '@material-ui/core/Grid';
 const PostsContainer =()=>{
     const [items,setItems] = useState(false);
 
-  
+  const url = "http://localhost:4000" 
  useEffect(()=>{
 
-    axios.get("https://api.jikan.moe/v3/top/anime/1/upcoming")
-    .then(response=>setItems(response.data.top))
+    axios.get( `${url}/post/get-feed`)
+    .then(response=>{
+      console.log(response)
+      setItems(response.data)
+    })
 
 
   },[])
@@ -30,11 +33,11 @@ return(
  alignItems="strech"
 >
    
-   {items && items.map((item)=>{
+   {items && items.map((item,index)=>{
 
   return(
-    <Grid item xs={6} spacing={4}>
-<PostsCard  bodyText={item.title}/>
+    <Grid key={index+item.body}item xs={6} spacing={4}>
+<PostsCard  bodyText={item.body}/>
 </Grid>
   )
 
