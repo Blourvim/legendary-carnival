@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Login=()=> {
+const Signin=()=> {
   const classes = useStyles();
   const [state, setState] = React.useState({
     checkedA: true,
@@ -126,4 +126,4 @@ autoComplete="current-password"
   );
 };
 
-export default Login;
+export default Signin;

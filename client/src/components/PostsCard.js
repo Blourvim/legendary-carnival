@@ -44,7 +44,12 @@ const PostsCard=(props)=> {
     const classes = useStyles();
            const {body, user,id,} =  props
 
+const openPost=()=>{
 
+  console.log(body,user,id)
+
+
+}
 
     const handlePaw=(postId)=>{
       const url = "http://localhost:4000"
@@ -81,7 +86,7 @@ const PostsCard=(props)=> {
   
     return (
       <Card key={`body + ${Math.random()}`} className={classes.card}>
-        <CardActionArea className={classes.cardAction}>
+        <CardActionArea className={classes.cardAction} onClick={()=>{openPost()}}>
      
           <CardContent>
            
@@ -96,7 +101,7 @@ const PostsCard=(props)=> {
 
           </Button>
 
-          <Button size="small" color="primary"onClick={()=>{handleComment(id)}}>
+          <Button size="small" color="primary"onClick={()=>{handleComment(id,)}}>
 Comment
           </Button>
         </CardActions>

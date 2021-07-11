@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -55,7 +55,9 @@ const Navbar = () => {
         {bigScreen &&
         <List className={classes.navbarButtons} >
         {['Home','Profile',].map((text, index) => (
-                        <Link key={text +'navbarlink'} activeClass="active" to={text} hashSpy={true} spy={true} smooth={true}>
+
+
+          <Link key={text +'navbarlink'} to={["/","/signin"][index]} >
 
           <ListItem button key={text +'navbar'}>
             <ListItemIcon color={'secondary'}key={text +'navbaricon'}>{[<HomeIcon/>,<GrainIcon/>,<PersonIcon/>,<ContactMailIcon/>][index]}</ListItemIcon>
