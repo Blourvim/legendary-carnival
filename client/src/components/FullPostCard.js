@@ -1,5 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {useState,useEffect} from 'react'
+import {Link, useParams} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -10,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Comments from './Comments';
 
 
 
@@ -22,10 +24,11 @@ const useStyles = makeStyles({
         flexDirection:"column",
       },
       card:{
+        margin:"0 auto",
       height:"175px",
         marginBottom:"50px",
         maxWidth: 345,
-        justifyContent:"start",
+        justifyContent:"cener",
         display:"flex",
         flexDirection:"column",
       },
@@ -41,16 +44,23 @@ const useStyles = makeStyles({
       }
   });
   
-const PostsCard=(props)=> {
+const FullPostCard=(props)=> {
     const classes = useStyles();
-           const {body, user,id,} =  props
+const { id } = useParams()
+const [post, setPost] = useState(false)
+useEffect(()=>{
+    const url = "http://localhost:4000" 
 
-const openPost=()=>{
+axios.get(`${url}/post/${id}`)
+.then(res=>{
+    console.log(res)
+    setPost(res.data)
+})
 
-  console.log(body,user,id)
 
 
-}
+},[])
+
 
     const handlePaw=(postId)=>{
       const url = "http://localhost:4000"
@@ -86,7 +96,11 @@ const openPost=()=>{
 
   
     return (
-      <Card key={`body + ${Math.random()}`} className={classes.card}>
+      <div>
+      {post &&
+<div>
+
+      <Card key={`fullpostcard`} className={classes.card}>
                 <Link className={classes.cardAction} to={`/posts/${id}`}>
 
         <CardActionArea  >
@@ -94,7 +108,7 @@ const openPost=()=>{
           <CardContent>
            
             <Typography variant="body2" color="textSecondary" component="p">
-              {body}
+              {post.body}
             </Typography>
           </CardContent>
 
@@ -112,9 +126,20 @@ Comment
           </Button>
         </CardActions>
       </Card>
+
+<Comments comments={post.comments}/>
+      </div>
+
+
+}
+
+
+
+
+</div>
     );
   }
 
 
 
-export default PostsCard
+export default FullPostCard

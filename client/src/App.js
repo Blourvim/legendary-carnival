@@ -4,6 +4,7 @@ import NavBar from './components/NavBar';
 import Signin from './components/Signin';
 import CreatePost from './components/CreatePost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import FullPostCard from './components/FullPostCard';
 
 
 function App() {
@@ -19,6 +20,12 @@ function App() {
         <Signin/>
 
           </Route>
+
+          <Route exact path="/posts/:id">
+        <FullPostCard/>
+
+          </Route>
+          
 
         </Switch>
     </div>

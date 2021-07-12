@@ -42,7 +42,6 @@ export const comment = async (req, res) => {
 }
 
 export const getFeed = async (req, res) => {
-
 try {
 
     const feed =await Tweet.limitedList({perPage:req.perPage||10})
@@ -53,4 +52,9 @@ try {
     console.error(error)
 }
 
+}
+
+export const getPost = async(req,res)=>{
+    const result = await Tweet.findById(req.params.id)
+res.status(200).json(result)
 }
