@@ -27,6 +27,10 @@ function App() {
         <FullPostCard/>
 
           </Route>
+          <Route exact path="/create-post">
+        <CreatePost/>
+
+          </Route>
           
 
         </Switch>

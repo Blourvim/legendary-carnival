@@ -4,7 +4,15 @@ import User from '../models/Schemas/UserSchema.js';
 export const create = async (req, res) => {
     const body = req.body.body;
     const user = req.user.id
-    try { Tweet.create({ body, user }) }
+    try { 
+        Tweet.create({ body, user })
+        .then(docs=>{
+            User.findByIdAndUpdate(user,{'$push':{posts:docs._id}})
+        
+        })
+    
+    
+    }
     catch { if (err) console.error(err) }
 
 };

@@ -54,10 +54,10 @@ const Navbar = () => {
           <Toolbar className={classes.toolbar} >
         {bigScreen &&
         <List className={classes.navbarButtons} >
-        {['Home','Profile','Sign Out',].map((text, index) => (
+        {['Home','Profile','Sign Out','Create Post'].map((text, index) => (
 
 
-          <Link key={text +'navbarlink'} to={["/","/signin","/signout"][index]} >
+          <Link key={text +'navbarlink'} to={["/","/signin","/signout",'/create-post'][index]} >
 
           <ListItem button key={text +'navbar'}>
             <ListItemIcon color={'secondary'}key={text +'navbaricon'}>{[<HomeIcon/>,<GrainIcon/>,<PersonIcon/>,<ContactMailIcon/>][index]}</ListItemIcon>
