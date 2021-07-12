@@ -5,7 +5,7 @@ import Signin from './components/Signin';
 import CreatePost from './components/CreatePost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FullPostCard from './components/FullPostCard';
-
+import SignOut from './components/SignOut';
 
 function App() {
   return (
@@ -18,7 +18,9 @@ function App() {
           </Route>
           <Route exact path="/signin">
         <Signin/>
-
+          </Route>
+          <Route exact path="/signout">
+        <SignOut/>
           </Route>
 
           <Route exact path="/posts/:id">

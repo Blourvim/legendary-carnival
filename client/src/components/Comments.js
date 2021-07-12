@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: "hsl(194, 53.3%, 79%)",
     margin:"0 auto"
   },
 }));
@@ -23,7 +23,6 @@ const Comments=(props)=> {
   return (
     <List className={classes.root}>
       {props.comments.map((comment,index)=>{
-
 return(
   <>
   <ListItem key={comment.id}>
@@ -34,7 +33,7 @@ return(
   </ListItemAvatar>
   <ListItemText primary={comment.commenterName} secondary={comment.body}/>
 </ListItem>
-<Divider variant="inset" component="li" />
+{props.comments.length-1 !== index && <Divider variant="inset" component="li" />}
 </>
 )
 

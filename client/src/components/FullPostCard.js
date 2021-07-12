@@ -12,6 +12,7 @@ import axios from 'axios';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Comments from './Comments';
+import TextField from '@material-ui/core/TextField';
 
 
 
@@ -48,6 +49,8 @@ const FullPostCard=(props)=> {
     const classes = useStyles();
 const { id } = useParams()
 const [post, setPost] = useState(false)
+const [commentField, setCommentField] = useState()
+
 useEffect(()=>{
     const url = "http://localhost:4000" 
 
@@ -74,19 +77,24 @@ axios.get(`${url}/post/${id}`)
 
 
     }
-    const handleComment=(postId,commentBody)=>{
+    const handleComment=(postId)=>{
       const url = "http://localhost:4000"
-      console.log(`${postId} commented with ${commentBody}`)
+      console.log(`${postId} commented with ${commentField}`)
     axios.post(`${url}/post/add-comment`,
       {
         postId,
-        commentBody:"test test body 123"
+        commentBody:commentField
     },
       {
         withCredentials:true
       }
     
-    )
+    ).then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
 
 
@@ -121,11 +129,12 @@ axios.get(`${url}/post/${id}`)
 
           </Button>
 
-          <Button size="small" color="primary"onClick={()=>{handleComment(id,)}}>
+          <Button size="small" color="primary"onClick={()=>{handleComment(id,commentField)}}>
 Comment
           </Button>
         </CardActions>
-      </Card>
+<TextField label="Type Here"variant="filled"onChange={(e)=>{setCommentField(e.target.value)}}/>
+        </Card>
 
 <Comments comments={post.comments}/>
       </div>
