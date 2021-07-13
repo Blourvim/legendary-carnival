@@ -7,6 +7,7 @@ export const create = async (req, res) => {
     try { 
         Tweet.create({ body, user })
         .then(docs=>{
+            
             User.findByIdAndUpdate(user,{'$push':{posts:docs._id}})
         
         })
