@@ -9,6 +9,9 @@ import LocalStrategy from 'passport-local';
 
 import indexRoutes from "./routes/index.js";
 import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/user.js";
+
+
 import passport from "passport";
 
 import session from 'express-session';
@@ -95,4 +98,5 @@ app.use(passport.session());
 
 app.use('/',indexRoutes);
 app.use('/post',postRoutes);
+app.use('/user',userRoutes);
 

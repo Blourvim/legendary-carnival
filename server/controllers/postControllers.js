@@ -47,7 +47,7 @@ export const comment = async (req, res) => {
     const user = req.user
     const tweet = req.body.postId;
     const target = await Tweet.findById(tweet)
-    target.addComment(user, comment, () => { console.log("saved comment") })
+    target?.addComment(user, comment, () => { console.log("saved comment") })
 }
 
 export const getFeed = async (req, res) => {

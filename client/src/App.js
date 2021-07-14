@@ -6,6 +6,7 @@ import CreatePost from './components/CreatePost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FullPostCard from './components/FullPostCard';
 import SignOut from './components/SignOut';
+import UserProfile from './components/UserProfile'
 
 function App() {
   return (
@@ -30,6 +31,12 @@ function App() {
           <Route exact path="/create-post">
         <CreatePost/>
 
+          </Route>
+          <Route exact path="/profile">
+        <UserProfile/>
+          </Route>
+          <Route exact path="/user/:id">
+        <UserProfile/>
           </Route>
           
 
