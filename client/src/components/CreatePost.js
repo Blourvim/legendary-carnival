@@ -6,7 +6,7 @@ import { Container, Grid, Typography, Switch, Button} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     container:{
-      height:'100px',
+      height:'190px',
       margin:'0px',
         padding:"40px",
         background:'linear-gradient(90deg, rgba(220,215,240,1) 0%, rgba(201,229,245,1) 66%)'
@@ -65,7 +65,13 @@ const CreatePost=()=> {
 
                  <form onSubmit={handleFormSubmit}className={classes.root} noValidate autoComplete="off">
 
-      <TextField id="filled-basic" name ="body" label="body" variant="filled" />
+      <TextField 
+      autoFocus={true}
+      multiline
+      id="filled-basic"
+       name ="body"
+        label="body" 
+        variant="filled" />
 
 
 

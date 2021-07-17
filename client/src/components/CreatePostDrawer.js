@@ -19,6 +19,7 @@ const StyledMenu = withStyles({
     margin:'0px',
     padding:'0px',
     border: '1px solid #d3d4d5',
+    height:'300px'
   },
 })((props) => (
   <Menu
