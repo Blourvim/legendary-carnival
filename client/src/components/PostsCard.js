@@ -14,6 +14,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ChatBubble from '@material-ui/icons/ChatBubble';
 
 
 
@@ -24,48 +25,48 @@ const useStyles = makeStyles({
         display: "flex",
         flex:"1 0 auto",
         flexDirection:"column",
+        textDecoration:'none',
+        color:'black',
+        fontWeight:'bold',
+        marginTop:'5px',
+        paddingTop:'0px'
       },
       card:{
-        height:'100%',
-        marginBottom:"50px",
+        height:'183px',
+        marginBottom:"20px",
         maxWidth: 345,
         justifyContent:"start",
         display:"flex",
         flexDirection:"column",
-        backgroundColor:'#BDE2EC'
+        borderRadius:"10px",
       },
       
       body: {
         alignSelf: "end",
-        textAlign: "center"
+        textAlign: "center",
       },
       
       actions: {
         display: "flex",
-        justifyContent: "flex-start"
+        justifyContent: "flex-start",
+        background:'linear-gradient(90deg, rgba(220,215,240,1) 0%, rgba(201,229,245,1) 66%)'
+
       },
-      avatar:{
-        position:'relative',
-        width:'54px',
-        boxSizing:'content-box',
-        borderWidth:'50px 18px 0',
-        borderStyle:'solid',
-        '&::before':{
-          content: "some",
-          position:'absolute',
-          height:'0',
-          width:'0',
-          top:'-85px',
-          bottom:'-18px',
-          borderWidth:'0 45px 35px',
-          borderStyle:'solid'
-        }
+      cardContent:{
+        marginTop:"0px",
+        paddingTop:'0px',
+        paddingBottom:'0px',
+        marginBotton:"0px"
+      },
+      cardHeader:{
+        paddingBottom:'5px'
       }
+     
   });
   
 const PostsCard=(props)=> {
     const classes = useStyles();
-           const {body, user,_id,createdAt,favoritesCount} =  props.post
+           const {body, user,_id,createdAt,comments,favoritesCount} =  props.post
            console.log(props)
 
 const openPost=()=>{
@@ -91,35 +92,16 @@ const openPost=()=>{
 
 
     }
-    const handleComment=(postId,commentBody)=>{
-      const url = "http://localhost:4000"
-      console.log(`${postId} commented with ${commentBody}`)
-    axios.post(`${url}/post/add-comment`,
-      {
-        postId,
-        commentBody:"test test body 123"
-    },
-      {
-        withCredentials:true
-      }
-    
-    )
 
-
-
-
-    }
-
-
-  
     return (
       <Card key={`body + ${Math.random()}`} className={classes.card}>
                 <Link className={classes.cardAction} to={`/user/${user}`}>
 
 <CardHeader
+className={classes.cardHeader}
         avatar={
-          <Avatar aria-label="User" >
-            R
+          <Avatar src="https://picsum.photos/200" aria-label="User" >
+            
           </Avatar>
         }
         action={
@@ -131,28 +113,27 @@ const openPost=()=>{
         subheader={createdAt}
       />
       </Link>
-                <Link className={classes.cardAction} to={`/posts/${_id}`}>
-
+                <Link style={{ }} className={classes.cardAction} to={`/posts/${_id}`}>
+<CardContent className={classes.cardContent}>
         <CardActionArea  >
      
-          <CardContent>
            
-            <Typography variant="body2" color="textSecondary" component="p">
+            <Typography variant="body2" color="textPrimary" component="p">
               {body}
             </Typography>
-          </CardContent>
 
         </CardActionArea>
+        </CardContent>
         </Link>
 
         <CardActions className={classes.actions}>
           <Button  size="small" color="primary" onClick={()=>{handlePaw(_id)}}>
-          <FavoriteIcon style={{color:"red"}}/>
+          <FavoriteIcon style={{color:"red"}}/>{favoritesCount}
 
           </Button>
 <Link to={`/posts/${_id}`}>
-          <Button size="small" color="primary"onClick={()=>{handleComment(_id)}}>
-Comment
+          <Button size="small" color="primary">
+<ChatBubble style={{color:'#8f80ee'}}/> {comments.length}
           </Button>
           </Link>
         </CardActions>

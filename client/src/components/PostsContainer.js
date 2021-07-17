@@ -17,6 +17,9 @@ commentField:{
   height:"80px"
 },
 gridItem:{
+},
+container:{
+  marginTop:'20px'
 }
 })
 
@@ -39,18 +42,21 @@ const PostsContainer =()=>{
 
 return(
   <Container
- maxWidth="md"
+ maxWidth="xs"
+ className={classes.container}
    >
  <Grid  container
  direction="row"
  justify="center"
  spacing={1}
+ marginTop="9px"
+
 >
    
    {items && items.map((item,index)=>{
 
   return(
-    <Grid className={classes.gridItem} item xs={4} key={index + item.body}>
+    <Grid className={classes.gridItem} item xs={12} key={index + item.body}>
 <PostsCard post={item} />
 </Grid>
   )

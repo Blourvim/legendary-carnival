@@ -6,22 +6,29 @@ import { Container, Grid, Typography, Switch, Button} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     container:{
+      height:'100px',
+      margin:'0px',
         padding:"40px",
-        backgroundColor:"hsl(220, 95%, 80%)",
-        borderRadius:'6px'
+        background:'linear-gradient(90deg, rgba(220,215,240,1) 0%, rgba(201,229,245,1) 66%)'
+
     }
     ,
     switch:{
-        left:"0px"
+        left:"0px",
+        margin:'0px',
+
 
     }
 ,
   root: {
       display:'grid',
     '& > *': {
-      margin: theme.spacing(1),
+      margin:'0px',
     },
   },
+  grid:{
+    margin:'0px',
+  }
 }));
 
 const CreatePost=()=> {
@@ -49,7 +56,7 @@ const CreatePost=()=> {
   }
 
   return (
-      <Grid  container justify = "center">
+      <Grid  className={classes.grid} container justify = "center">
           <div className={classes.container}>
        
 

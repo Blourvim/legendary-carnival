@@ -6,16 +6,21 @@ import { Container, Grid, Typography, Switch, Button} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     container:{
+      marginTop:'25px',
         padding:"40px",
-        backgroundColor:"hsl(220, 95%, 80%)",
+        background:'linear-gradient(90deg, rgba(220,215,240,1) 0%, rgba(201,229,245,1) 66%)',
         borderRadius:'6px'
     }
     ,
     switch:{
-        left:"0px"
+        left:"0px",
+        with:'100%'
 
     }
 ,
+switchText:{
+marginLeft:'17px'
+},
   root: {
       display:'grid',
     '& > *': {
@@ -71,7 +76,7 @@ const Signin=()=> {
             </Typography>
 
         
-            <Typography align="center" variant="p3">{
+            <Typography className={classes.switchText}color='textPrimary' align="right" variant="p3">{
             state.checkedB 
             ? "Don't have an account ?"
             : "Do you need to sign in ?"

@@ -7,12 +7,13 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import FullPostCard from './components/FullPostCard';
 import SignOut from './components/SignOut';
 import UserProfile from './components/UserProfile'
+import MenuAppBar from './components/MenuAppBar';
 
 function App() {
   return (
     <Router>
     <div>
-      <NavBar/>
+      <MenuAppBar/>
         <Switch>
           <Route exact path="/">
             <PostsContainer/>

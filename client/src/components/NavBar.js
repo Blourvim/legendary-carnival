@@ -36,7 +36,13 @@ const useStyles = makeStyles((theme) => ({
     alignSelf:'center',
     display:'inline-flex',
     marginLeft:'0px',
-    marginRight:'0px'
+    marginRight:'0px',
+    color:'white'
+  
+},
+itemText:{
+  textDecoration:'none',
+  color:'white'
 }
 }));
 
@@ -60,9 +66,9 @@ const Navbar = () => {
           <Link key={text +'navbarlink'} to={["/","/profile","/signin","/create-post","/signout"][index]} >
 
           <ListItem button key={text +'navbar'}>
-            <ListItemIcon color={'secondary'}key={text +'navbaricon'}>{[<HomeIcon/>,<PersonIcon/>,<GrainIcon/>,<PersonIcon/>,<ContactMailIcon/>][index]}</ListItemIcon>
+            <ListItemIcon color={'primary'}key={text +'navbaricon'}>{[<HomeIcon/>,<PersonIcon/>,<GrainIcon/>,<PersonIcon/>,<ContactMailIcon/>][index]}</ListItemIcon>
 
-            <ListItemText key={text +'navbartext'} primary={text} />
+            <ListItemText className={classes.itemText}key={text +'navbartext'} primary={text} />
             
           </ListItem>
           </Link>
