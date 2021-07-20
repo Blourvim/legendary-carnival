@@ -19,6 +19,7 @@ import {Link} from 'react-router-dom';
 import CreatePostDrawer from './CreatePostDrawer';
 
 import axios from 'axios';
+import { useAuth, useAuthUpdate } from './AuthContext';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -61,34 +62,19 @@ top:0
 
 export default function MenuAppBar() {
   const classes = useStyles();
-  const [auth, setAuth] = useState(false);
+const auth = useAuth()
 
-  useEffect(()=>{
-    const url = "http://localhost:4000"
-    console.log('yayyy123')
-    axios.get(url+'/user/validate',{withCredentials:true})
-    .then((res)=>{
-      console.log(res)
-      console.log(res.status)
-      
-      if(res.status!== 401){
-        setAuth(true)
-        return
-      }
-      setAuth(false)
-    })
-    .catch(err=>{console.log(err)})
+const findAuth = useAuthUpdate()
 
-  },[])
 
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-    console.log(event.target)
-  };
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  //   console.log(event.target)
+  // };
 
   const handleMenu = (event) => {
     console.log(event.currentTarget)
@@ -105,12 +91,7 @@ export default function MenuAppBar() {
 
   return (
     <div className={classes.root}>
-      <FormGroup>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup>
+
       <AppBar className={classes.appBar}position="static">
         <Toolbar>
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
@@ -122,7 +103,7 @@ export default function MenuAppBar() {
           <IconButton className={classes.websiteIcon} aria-label="button to feed" color="inherit">
 
 
-          <ShutterSpeed /> Main Page
+          <ShutterSpeed /> Main Page {`${auth}`}
 
           </IconButton>
           </Link>
@@ -178,7 +159,7 @@ export default function MenuAppBar() {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
 
                 <Link to={'/signout'}>
-                <MenuItem onClick={()=>{handleClose();setAuth(false)}}>Sign Out</MenuItem>
+                <MenuItem onClick={handleClose}>Sign Out</MenuItem>
                 </Link>
 
               </Menu>

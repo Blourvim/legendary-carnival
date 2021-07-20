@@ -9,9 +9,12 @@ import SignOut from './components/SignOut';
 import UserProfile from './components/UserProfile'
 import MenuAppBar from './components/MenuAppBar';
 import NotFound from './pages/NotFound';
+import { AuthProvider } from './components/AuthContext';
 
 function App() {
   return (
+    <AuthProvider>
+
     <Router>
     <div>
       <MenuAppBar/>
@@ -47,6 +50,8 @@ function App() {
         </Switch>
     </div>
     </Router>
+    </AuthProvider>
+
   );
 }
 
