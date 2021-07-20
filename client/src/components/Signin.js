@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { Container, Grid, Typography, Switch, Button} from '@material-ui/core';
-
+import { Redirect } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
     container:{
       marginTop:'25px',
@@ -54,12 +54,37 @@ const Signin=()=> {
       withCredentials: true
      } 
       )
+      .then((res)=> {
+        if(res.status===200){
+          console.log(res)
+          return
+        };
+        console.log("fail"+res )
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    }
+    else{
+
+      axios.post(`${url}/signup`, {
+        email: e.target.email.value,
+        password: e.target.password.value,
+        username:e.target.username.value,
+      },
+     {
+      withCredentials: true
+     } 
+      )
       .then(function (response) {
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
       });
+
+
     }
 
 
@@ -99,6 +124,7 @@ const Signin=()=> {
       {!state.checkedB 
 && <TextField
 id="standard-password-input"
+name='username'
 label="User Name"
 variant="filled" 
 autoComplete="current-password"

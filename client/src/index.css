@@ -14,6 +14,13 @@ code {
 a{
   text-decoration: none;
 }
-span{
+
+#create-new-post{
   color:white
+
+}
+#link-main-page{
+  color:white;
+  align-self: center;
+  margin-top: -60;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -16,7 +16,9 @@ import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ShutterSpeed from '@material-ui/icons/ShutterSpeed';
 import {Link} from 'react-router-dom';
-import CreatePostDrawer from './CreatePostDrawer'
+import CreatePostDrawer from './CreatePostDrawer';
+
+import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,8 +36,10 @@ const useStyles = makeStyles((theme) => ({
   },
   websiteIcon:{
     position:'absolute',
-    left:'50%'
-
+    left:'43%',
+    right:'auto',
+    color:'white',
+top:0
 
   },
   userButtons:{
@@ -45,7 +49,9 @@ const useStyles = makeStyles((theme) => ({
   },
   itemText:{
     textDecoration:'none',
-    color:'white'
+    color:'white',
+    marginRight:'0px',
+    marginLeft:'auto',
   },
   createPost:{
     position:'absolute',
@@ -55,12 +61,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function MenuAppBar() {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
+  const [auth, setAuth] = useState(false);
+
+  useEffect(()=>{
+    const url = "http://localhost:4000"
+    console.log('yayyy123')
+    axios.get(url+'/user/validate',{withCredentials:true})
+    .then((res)=>{
+      console.log(res)
+      console.log(res.status)
+      
+      if(res.status!== 401){
+        setAuth(true)
+        return
+      }
+      setAuth(false)
+    })
+    .catch(err=>{console.log(err)})
+
+  },[])
+
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
   const handleChange = (event) => {
     setAuth(event.target.checked);
+    console.log(event.target)
   };
 
   const handleMenu = (event) => {
@@ -89,12 +116,18 @@ export default function MenuAppBar() {
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-<CreatePostDrawer/>
-          <IconButton edge='center'className={classes.websiteIcon} aria-label="show 4 new mails" color="inherit">
+{auth&&<CreatePostDrawer/>}
+<Link id='link-main-page' to={'/'}>
+
+          <IconButton className={classes.websiteIcon} aria-label="button to feed" color="inherit">
 
 
-          <ShutterSpeed />
+          <ShutterSpeed /> Main Page
+
           </IconButton>
+          </Link>
+
+
           {auth? (
             <div className={classes.userButtons}>
 
@@ -145,14 +178,15 @@ export default function MenuAppBar() {
                 <MenuItem onClick={handleClose}>My account</MenuItem>
 
                 <Link to={'/signout'}>
-                <MenuItem onClick={handleClose}>Sign Out</MenuItem>
+                <MenuItem onClick={()=>{handleClose();setAuth(false)}}>Sign Out</MenuItem>
                 </Link>
 
               </Menu>
             </div>
           )
           :
-          <Link className={classes.itemText}to={'/signin'}>Login</Link>
+          <Link
+           className={classes.itemText}to={'/signin'}><Typography variant='h6'>Sign In or Sign Up</Typography></Link>
           }
         </Toolbar>
       </AppBar>

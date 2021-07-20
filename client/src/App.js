@@ -8,6 +8,7 @@ import FullPostCard from './components/FullPostCard';
 import SignOut from './components/SignOut';
 import UserProfile from './components/UserProfile'
 import MenuAppBar from './components/MenuAppBar';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -39,7 +40,9 @@ function App() {
           <Route exact path="/user/:id">
         <UserProfile/>
           </Route>
-          
+          <Route path="/">
+<NotFound/>   
+       </Route>
 
         </Switch>
     </div>

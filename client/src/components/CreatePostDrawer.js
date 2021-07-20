@@ -63,11 +63,12 @@ export default function CreatePostDrawer() {
   return (
     <div>
       <IconButton
+      id='create-new-post'
         aria-controls="customized-menu"
         aria-haspopup="true"
         onClick={handleClick}
       >
-Create New Post<AddBox/>
+ New Post<AddBox/>
       </IconButton>
       <StyledMenu
         id="customized-menu"

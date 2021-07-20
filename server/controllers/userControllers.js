@@ -23,7 +23,6 @@ export const getUser = async(req,res)=>{
 export const getUserById = async(req,res)=>{
 
 const UserId = req.params.user
-console.log("hi")
 const userInfo = await UserModal.findById(UserId)
 
 if(userInfo){
@@ -31,5 +30,10 @@ if(userInfo){
   return
 }
 res.status(404)
+
+}
+export const validate =async(req,res)=>{
+res.status(200).json({'user':'validated'})
+console.log("validated")
 
 }

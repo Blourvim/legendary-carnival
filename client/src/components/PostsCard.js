@@ -34,7 +34,6 @@ const useStyles = makeStyles({
       card:{
         height:'183px',
         marginBottom:"20px",
-        maxWidth: 345,
         justifyContent:"start",
         display:"flex",
         flexDirection:"column",
@@ -109,9 +108,12 @@ className={classes.cardHeader}
             <MoreVertIcon />
           </IconButton>
         }
-        title={_id}
+    
+        title={    <Typography>{_id}</Typography>}
         subheader={createdAt}
+        
       />
+        
       </Link>
                 <Link style={{ }} className={classes.cardAction} to={`/posts/${_id}`}>
 <CardContent className={classes.cardContent}>
