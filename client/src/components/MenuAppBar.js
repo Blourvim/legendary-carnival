@@ -71,11 +71,6 @@ useAuthUpdate()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  //   console.log(event.target)
-  // };
-
   const handleMenu = (event) => {
     console.log(event.currentTarget)
     setAnchorEl(event.currentTarget);
@@ -103,7 +98,7 @@ useAuthUpdate()
           <IconButton className={classes.websiteIcon} aria-label="button to feed" color="inherit">
 
 
-          <ShutterSpeed /> Main Page {`${auth}`}
+          <ShutterSpeed /> Main Page 
 
           </IconButton>
           </Link>

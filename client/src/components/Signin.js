@@ -33,10 +33,7 @@ marginLeft:'17px'
 
 const Signin=()=> {
   const classes = useStyles();
-  const [state, setState] = useState({
-    checkedA: true,
-    checkedB: true,
-  });
+  const [state, setState] = useState(true);
   const [success, setSuccess] =useState(false)
   const updateAuth = useAuthUpdate()
   
@@ -44,14 +41,15 @@ const Signin=()=> {
   const url = "http://localhost:4000"
 
   const handleChange = (event) => {
-    setState({ ...state, [event.target.name]: event.target.checked });
+    const test = state
+    setState(!test);
   };
 
   const handleFormSubmit =(e)=>{
     e.preventDefault()
     
     
-    if(state.checkedB)  //if sign in
+    if(state)  //if Sign In
     {
       axios.post(`${url}/signin`, {
         username: e.target.email.value,
@@ -65,6 +63,8 @@ const Signin=()=> {
         if(res.status===200){
           console.log(res)
           setSuccess(true)
+    updateAuth()
+
         };
         console.log("fail"+res )
 
@@ -73,7 +73,8 @@ const Signin=()=> {
         console.log(error);
       });
     }
-    else{
+    else //if Sign Up
+    {  
 
       axios.post(`${url}/signup`, {
         email: e.target.email.value,
@@ -86,6 +87,8 @@ const Signin=()=> {
       )
       .then(function (response) {
         console.log(response);
+        setState(true)
+
       })
       .catch(function (error) {
         console.log(error);
@@ -93,7 +96,6 @@ const Signin=()=> {
 
 
     }
-    updateAuth()
 
 
 
@@ -107,7 +109,7 @@ success && <Redirect to='/'/>
           <div className={classes.container}>
            <Typography align="center" variant="h3">
             {
-            state.checkedB 
+            state
             ?"Sign In"
             :"Sign Up" 
             }
@@ -115,16 +117,16 @@ success && <Redirect to='/'/>
 
         
             <Typography className={classes.switchText}color='textPrimary' align="right" variant="p3">{
-            state.checkedB 
+            state 
             ? "Don't have an account ?"
             : "Do you need to sign in ?"
             }</Typography>
               <Switch
               className={classes.switch}
-        checked={state.checkedB}
+        checked={state}
         onChange={handleChange}
         color="primary"
-        name="checkedB"
+        name="switch"
         inputProps={{ 'aria-label': 'sign in sign up checkbox' }}
       />
 
@@ -134,7 +136,7 @@ success && <Redirect to='/'/>
 
 
 
-      {!state.checkedB 
+      {!state
 && <TextField
 id="standard-password-input"
 name='username'
@@ -151,7 +153,7 @@ autoComplete="current-password"
           autoComplete="current-password"
         />
         
-{!state.checkedB 
+{!state
 && <TextField
 id="standard-password-input"
 label="Confirm Password"
