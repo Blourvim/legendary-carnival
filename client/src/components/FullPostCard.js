@@ -27,13 +27,7 @@ const useStyles = makeStyles({
         flexDirection:"column",
       },
       card:{
-        margin:"0 auto",
-      height:"175px",
-        marginBottom:"50px",
-        maxWidth: 345,
-        justifyContent:"cener",
-        display:"flex",
-        flexDirection:"column",
+        marginTop:'30px'
       },
       
       body: {
@@ -46,7 +40,7 @@ const useStyles = makeStyles({
         justifyContent: "flex-start"
       },
       commentField:{
-        backgroundColor:'#3EB489',
+        backgroundColor:'#b1e1cf',
         borderTopLeftRadius:'14px',
         borderTopRightRadius:'14px',
         paddingTop:'5%'
@@ -119,11 +113,11 @@ axios.get(`${url}/post/${id}`)
 
   
     return (
-      <Container maxWidth='sm'>
+      <Container  className={classes.card} maxWidth='sm'>
       {post &&
 <div>
 
-<PostsCard post={post}  className={classes.card}>
+<PostsCard post={post} >
 
   
 </PostsCard>
