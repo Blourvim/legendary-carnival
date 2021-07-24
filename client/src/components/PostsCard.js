@@ -15,7 +15,7 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatBubble from '@material-ui/icons/ChatBubble';
-
+import Moment from 'react-moment';
 
 
 const useStyles = makeStyles({
@@ -110,7 +110,7 @@ className={classes.cardHeader}
         }
     
         title={    <Typography>{_id}</Typography>}
-        subheader={createdAt}
+        subheader={<Moment date={createdAt} format={"YYYY/MM/DD HH:MM"}/>}
         
       />
         

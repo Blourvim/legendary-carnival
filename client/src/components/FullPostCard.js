@@ -13,6 +13,8 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Comments from './Comments';
 import TextField from '@material-ui/core/TextField';
+import PostsCard from './PostsCard';
+import { Box, Container } from '@material-ui/core';
 
 
 
@@ -42,6 +44,19 @@ const useStyles = makeStyles({
       actions: {
         display: "flex",
         justifyContent: "flex-start"
+      },
+      commentField:{
+        backgroundColor:'#3EB489',
+        borderTopLeftRadius:'14px',
+        borderTopRightRadius:'14px',
+        paddingTop:'5%'
+      },
+      button:{
+        marginTop:'10px',
+        marginBottom:'10px',
+        padding:'8px',
+        right:'-80%',
+        left:'auto'
       }
   });
   
@@ -104,39 +119,45 @@ axios.get(`${url}/post/${id}`)
 
   
     return (
-      <div>
+      <Container maxWidth='sm'>
       {post &&
 <div>
 
-      <Card key={`fullpostcard`} className={classes.card}>
-                <Link className={classes.cardAction} to={`/posts/${id}`}>
+<PostsCard post={post}  className={classes.card}>
 
-        <CardActionArea  >
-     
-          <CardContent>
-           
-            <Typography variant="body2" color="textSecondary" component="p">
-              {post.body}
-            </Typography>
-          </CardContent>
+  
+</PostsCard>
+  <Container className={classes.commentField} 
+  maxWidth="sm"
+  alignItems='center'
+  >
 
-        </CardActionArea>
-        </Link>
 
-        <CardActions className={classes.actions}>
-          <Button  size="small" color="primary" onClick={()=>{handlePaw(id)}}>
-          <FavoriteIcon/>
+  <TextField 
+  label="Type Here" 
+  variant="filled"
+  multiline
+  rows='3'
+  rowsMax='3'
+  size='medium'
+  fullWidth
+   onChange={(e) => { setCommentField(e.target.value) }}
+    />
 
-          </Button>
+    <Button 
+    variant='contained'
+    size="small" 
+    color="primary" 
+    alignSelf='center'
+    className={classes.button}
+    onClick={() => { handleComment(id, commentField) }}>Comment
+    </Button>
+    </Container>
 
-          <Button size="small" color="primary"onClick={()=>{handleComment(id,commentField)}}>
-Comment
-          </Button>
-        </CardActions>
-<TextField label="Type Here"variant="filled"onChange={(e)=>{setCommentField(e.target.value)}}/>
-        </Card>
 
 <Comments comments={post.comments}/>
+
+
       </div>
 
 
@@ -145,7 +166,7 @@ Comment
 
 
 
-</div>
+</Container>
     );
   }
 
