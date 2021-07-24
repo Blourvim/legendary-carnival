@@ -10,37 +10,41 @@ export const useAuth = () => {
 }
 
 export const useAuthUpdate = () => {
-    return useContext(AuthUpdateContext)
+    
+return useContext(AuthUpdateContext)
+
+
 
 }
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(false)
-
     const checkAuth = () => {
 
         const url = "http://localhost:4000"
-        console.log('the check auth works')
         axios.get(url + '/user/validate', { withCredentials: true })
             .then(res => {
-                        console.log('the check auth works 2')
 
                 if (res.status !== 401) 
-                {setAuth(true)}
+                {setAuth(true)
+                console.log("auth set to true")}
                 else{
-                    setAuth(false);console.log('auth has failed')
+                    console.log("auth set to false")
+                    setAuth(false);
                     
                 }
             })
-            .catch(err => { console.log(err);        console.log('the check auth works error')
-        })
+            .catch(err => { console.log(err);     
+                setAuth(false);
+            })
 
     }
+
     checkAuth()
 
     return (
         <AuthContext.Provider value={auth}>
-            <AuthUpdateContext.Provider value={auth}>
+            <AuthUpdateContext.Provider value={checkAuth}>
                 {children}
             </AuthUpdateContext.Provider>
         </AuthContext.Provider>

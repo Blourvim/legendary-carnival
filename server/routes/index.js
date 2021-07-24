@@ -27,7 +27,7 @@ router.get('/signin-success',(req,res,next)=>{
 
 router.get('/signout',isAuth,async(req,res,next)=>{
     req.logout();
-    res.redirect("/");
+    res.send("signout-success");
     
 })
 

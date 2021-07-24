@@ -64,7 +64,7 @@ export default function MenuAppBar() {
   const classes = useStyles();
 const auth = useAuth()
 
-const findAuth = useAuthUpdate()
+useAuthUpdate()
 
 
 

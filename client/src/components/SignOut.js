@@ -4,6 +4,9 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useAuth, useAuthUpdate } from './AuthContext';
+import {Redirect} from 'react-router-dom';
+
 const useStyles = makeStyles((theme) => ({
 text:{
 
@@ -22,12 +25,15 @@ container:{
 
 const SignOut =()=>{
     const classes = useStyles();
+    const updateAuth =useAuthUpdate()
+    const test = useAuth()
+
 
     const url ="http://localhost:4000"
 useEffect(()=>{
     axios.get(url+"/signout",
     {withCredentials:true})
-    .then(res=>console.log(res))
+    .then(res=> res.status===200 && updateAuth() )
     .catch(err=>console.error(err))
   
 
@@ -38,6 +44,15 @@ useEffect(()=>{
 return(<Container maxWidth="sm"
 
 className={classes.container}>
+
+{
+
+
+test || <Redirect to='/'/>
+
+
+
+}
 <Typography
 className={classes.text}
 color='textPrimary'
@@ -46,8 +61,7 @@ variant='h3'
 
 
 >
-    You Have Been Signed Out
-
+You will be redirected back to the main page
 </Typography>
 </Container>
 )

@@ -1,9 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { Container, Grid, Typography, Switch, Button} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
+import { useAuth, useAuthUpdate } from './AuthContext';
+
 const useStyles = makeStyles((theme) => ({
     container:{
       marginTop:'25px',
@@ -31,10 +33,13 @@ marginLeft:'17px'
 
 const Signin=()=> {
   const classes = useStyles();
-  const [state, setState] = React.useState({
+  const [state, setState] = useState({
     checkedA: true,
     checkedB: true,
   });
+  const [success, setSuccess] =useState(false)
+  const updateAuth = useAuthUpdate()
+  
 
   const url = "http://localhost:4000"
 
@@ -44,6 +49,8 @@ const Signin=()=> {
 
   const handleFormSubmit =(e)=>{
     e.preventDefault()
+    
+    
     if(state.checkedB)  //if sign in
     {
       axios.post(`${url}/signin`, {
@@ -57,7 +64,7 @@ const Signin=()=> {
       .then((res)=> {
         if(res.status===200){
           console.log(res)
-          return
+          setSuccess(true)
         };
         console.log("fail"+res )
 
@@ -86,11 +93,17 @@ const Signin=()=> {
 
 
     }
+    updateAuth()
+
 
 
   }
   return (
       <Grid  container justify = "center">
+        {
+success && <Redirect to='/'/>
+
+        }
           <div className={classes.container}>
            <Typography align="center" variant="h3">
             {
