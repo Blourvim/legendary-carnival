@@ -49,7 +49,8 @@ const StyledMenuItem = withStyles((theme) => ({
   },
 }))(MenuItem);
 
-export default function CreatePostDrawer() {
+export default function CreatePostDrawer(props) {
+  const {desktop} = props
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleClick = (event) => {
@@ -68,7 +69,8 @@ export default function CreatePostDrawer() {
         aria-haspopup="true"
         onClick={handleClick}
       >
- New Post<AddBox/>
+ {desktop && 'New Post'}
+ <AddBox/>
       </IconButton>
       <StyledMenu
         id="customized-menu"

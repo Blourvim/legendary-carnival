@@ -6,21 +6,13 @@ import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import Badge from '@material-ui/core/Badge';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import ShutterSpeed from '@material-ui/icons/ShutterSpeed';
 import {Link} from 'react-router-dom';
 import CreatePostDrawer from './CreatePostDrawer';
-
-import axios from 'axios';
 import { useAuth, useAuthUpdate } from './AuthContext';
-
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -61,6 +53,8 @@ top:0
 }));
 
 export default function MenuAppBar() {
+  const desktop = useMediaQuery('(min-width:600px)');
+
   const classes = useStyles();
 const auth = useAuth()
 
@@ -89,35 +83,25 @@ useAuthUpdate()
 
       <AppBar className={classes.appBar}position="static">
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-{auth&&<CreatePostDrawer/>}
+{auth && <CreatePostDrawer desktop={desktop}/>}
+
+
+
 <Link id='link-main-page' to={'/'}>
 
-          <IconButton className={classes.websiteIcon} aria-label="button to feed" color="inherit">
+<IconButton className={classes.websiteIcon} aria-label="button to feed" color="inherit">
 
 
-          <ShutterSpeed /> Main Page 
+<ShutterSpeed /> {desktop&& "Main Page" }
 
-          </IconButton>
-          </Link>
+</IconButton>
+</Link>
+
 
 
           {auth? (
             <div className={classes.userButtons}>
 
-<IconButton aria-label="show 4 new mails" color="inherit">
-<Badge badgeContent={4} color="secondary">
-  <MailIcon />
-</Badge>
-</IconButton>
-
-<IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={17} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
 
               <IconButton
                 aria-label="account of current user"
