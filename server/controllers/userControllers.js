@@ -22,8 +22,9 @@ export const getUser = async(req,res)=>{
 
 export const getUserById = async(req,res)=>{
 
-const UserId = req.params.user
-const userInfo = await UserModal.findById(UserId)
+const userId = req.params.user
+console.log(req.params)
+const userInfo = await UserModal.findById(userId)
 
 if(userInfo){
   res.status(200).json({userInfo})

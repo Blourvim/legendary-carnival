@@ -1,5 +1,6 @@
 import React,{useEffect, useState} from 'react';
-import {Link,Redirect} from'react-router-dom';
+import {Link} from'react-router-dom';
+import {Container, Typography,} from '@material-ui/core';
 import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
@@ -53,30 +54,30 @@ const useStyles = makeStyles(({ palette }) => ({
     },
   }));
 
-const UserProfile = React.memo(function ProfileCard() {
+const Profile = (props)=> {
     const classes = useStyles();
-    const [user, setUser] = useState(false)
-    const url = "http://localhost:4000"
-    
-        useEffect(()=>{
-     axios.get(url+"/user",{withCredentials:true})
-     .then(res=>{
-         
-        console.log(res);
-        setUser(res.data.userInfo);
-    
-    })
-     .catch(err=> console.log(err))
-    
-        },
-        
-        
-        
-        [])
+    const {userInfo} = props.userInfo
+
+    console.log(userInfo)
     return (
-      <div>
-      {user && <Redirect to={`/user/${user._id}`}/>
-    } </div>   );
-  });
+      <Card className={classes.card}>
+        <CardContent>
+          <Avatar className={classes.avatar} src={'https://i.pravatar.cc/300'} />
+          <h3 className={classes.heading}>{userInfo?userInfo.name:"loading..."}</h3>
+        </CardContent>
+        <Divider light />
+        <Box display={'flex'}>
+          <Box p={2} flex={'auto'} className={classes.statBox}>
+            <p className={classes.statLabel}>Followers</p>
+            <p className={classes.statValue}>{userInfo?userInfo.name:"loading..."}</p>
+          </Box>
+          <Box p={2} flex={'auto'} className={classes.statBox}>
+            <p className={classes.statLabel}>Following</p>
+            <p className={classes.statValue}>12</p>
+          </Box>
+        </Box>
+      </Card>
+    );
+  };
   
-  export default UserProfile
+  export default Profile

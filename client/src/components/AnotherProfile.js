@@ -2,20 +2,22 @@ import React,{useEffect, useState} from 'react';
 import {Link, useParams} from'react-router-dom';
 import {Container, Typography,} from '@material-ui/core';
 import axios from 'axios';
+import Profile from './Profile';
 
 const AnotherProfile =()=>{
 
-    const [user, setUser] = useState(false)
-    const { userId } = useParams()
+    const [userInfo, setUserInfo] = useState(false)
+    const { user} = useParams()
 
 const url = "http://localhost:4000"
 
     useEffect(()=>{
- axios.get(`${url}/user/${userId}`)
+        console.log(user)
+ axios.get(`${url}/user/${user}`,{withCredentials:true})
  .then(res=>{
      
     console.log(res);
-    setUser(res.data);
+    setUserInfo(res.data);
 
 })
  .catch(err=> console.log(err))
@@ -29,7 +31,7 @@ const url = "http://localhost:4000"
 return(
 
 <div>
-    hi
+    <Profile userInfo={userInfo}/>
 </div>
 
 

@@ -10,6 +10,7 @@ import UserProfile from './components/UserProfile'
 import MenuAppBar from './components/MenuAppBar';
 import NotFound from './pages/NotFound';
 import { AuthProvider } from './components/AuthContext';
+import AnotherProfile from './components/AnotherProfile';
 
 function App() {
   return (
@@ -40,8 +41,8 @@ function App() {
           <Route exact path="/profile">
         <UserProfile/>
           </Route>
-          <Route exact path="/user/:id">
-        <UserProfile/>
+          <Route exact path="/user/:user">
+        <AnotherProfile/>
           </Route>
           <Route path="/">
 <NotFound/>   
