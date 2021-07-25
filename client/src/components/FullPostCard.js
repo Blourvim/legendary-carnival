@@ -2,19 +2,13 @@ import React from 'react';
 import {useState,useEffect} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import Comments from './Comments';
 import TextField from '@material-ui/core/TextField';
 import PostsCard from './PostsCard';
 import { Box, Container } from '@material-ui/core';
+import { useAuth } from './AuthContext';
 
 
 
@@ -57,6 +51,7 @@ const useStyles = makeStyles({
 const FullPostCard=(props)=> {
     const classes = useStyles();
 const { id } = useParams()
+const auth = useAuth()
 const [post, setPost] = useState(false)
 const [commentField, setCommentField] = useState()
 
@@ -121,6 +116,9 @@ axios.get(`${url}/post/${id}`)
 
   
 </PostsCard>
+
+
+{auth &&
   <Container className={classes.commentField} 
   maxWidth="sm"
   alignItems='center'
@@ -148,9 +146,8 @@ axios.get(`${url}/post/${id}`)
     </Button>
     </Container>
 
-
+}
 <Comments comments={post.comments}/>
-
 
       </div>
 
