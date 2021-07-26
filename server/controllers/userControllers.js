@@ -26,7 +26,8 @@ const userId = req.params.user
 console.log(req.params)
 const userInfo = await UserModal
 .findById(userId)
-.populate('Tweet')
+.populate('posts')
+.exec()
 
 
 if(userInfo){
