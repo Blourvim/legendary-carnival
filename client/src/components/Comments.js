@@ -13,7 +13,10 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     backgroundColor: "hsl(194, 53.3%, 79%)",
     margin:"0 auto",
-    borderRadius:'10px'
+    borderRadius:'10px',
+    marginTop:'20px'
+
+
   },
 }));
 

@@ -37,7 +37,8 @@ const useStyles = makeStyles({
         backgroundColor:'#b1e1cf',
         borderTopLeftRadius:'14px',
         borderTopRightRadius:'14px',
-        paddingTop:'5%'
+        paddingTop:'5%',
+        marginTop:'20px'
       },
       button:{
         marginTop:'10px',
