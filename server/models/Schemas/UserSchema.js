@@ -25,7 +25,10 @@ const { Schema } = mongoose;
           required: true,
           minLength: 7
       },
-    posts:[],
+    posts:[
+ { type: Schema.ObjectId, ref: "Tweet" }
+
+    ],
     comments:[{ 
             type:String
           }],

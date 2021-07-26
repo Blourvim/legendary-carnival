@@ -68,11 +68,6 @@ const PostsCard=(props)=> {
            const {body, user,_id,createdAt,comments,favoritesCount} =  props.post
            console.log(props)
 
-const openPost=()=>{
-
-
-
-}
 
     const handlePaw=(postId)=>{
       const url = "http://localhost:4000"
@@ -109,13 +104,13 @@ className={classes.cardHeader}
           </IconButton>
         }
     
-        title={    <Typography>{_id}</Typography>}
+        title={    <Typography>{props.post.user.name}</Typography>}
         subheader={<Moment date={createdAt} format={"YYYY/MM/DD HH:MM"}/>}
         
       />
         
       </Link>
-                <Link style={{ }} className={classes.cardAction} to={`/posts/${_id}`}>
+                <Link className={classes.cardAction} to={`/posts/${_id}`}>
 <CardContent className={classes.cardContent}>
         <CardActionArea  >
      

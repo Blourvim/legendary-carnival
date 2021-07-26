@@ -7,8 +7,8 @@ export const create = async (req, res) => {
     try { 
         Tweet.create({ body, user })
         .then(docs=>{
-            
             User.findByIdAndUpdate(user,{'$push':{posts:docs._id}})
+            .exec()
         
         })
     
@@ -53,7 +53,10 @@ export const comment = async (req, res) => {
 export const getFeed = async (req, res) => {
 try {
 
-    const feed =await Tweet.limitedList({perPage:req.perPage||10})
+    const feed =await Tweet
+    .limitedList({perPage:req.perPage||10})
+    .populate('user','name')
+    .exec()
 
     res.status(200).json(feed)
     
@@ -64,6 +67,9 @@ try {
 }
 
 export const getPost = async(req,res)=>{
-    const result = await Tweet.findById(req.params.id)
+    const result = await Tweet
+    .findById(req.params.id)
+    .populate('user','name')
+    .exec()
 res.status(200).json(result)
 }

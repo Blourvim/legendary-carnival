@@ -1,13 +1,13 @@
 import React from 'react';
 import {useState,useEffect} from 'react'
-import {Link, useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
 import Comments from './Comments';
 import TextField from '@material-ui/core/TextField';
 import PostsCard from './PostsCard';
-import { Box, Container } from '@material-ui/core';
+import {Container } from '@material-ui/core';
 import { useAuth } from './AuthContext';
 
 
@@ -69,18 +69,6 @@ axios.get(`${url}/post/${id}`)
 },[])
 
 
-    const handlePaw=(postId)=>{
-      const url = "http://localhost:4000"
-        console.log(id + "liked")
-      axios.post(`${url}/post/like-post`,
-        {postId:postId},
-        {withCredentials:true}
-      
-      )
-
-
-
-    }
     const handleComment=(postId)=>{
       const url = "http://localhost:4000"
       console.log(`${postId} commented with ${commentField}`)
