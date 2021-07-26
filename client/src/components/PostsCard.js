@@ -33,11 +33,11 @@ const useStyles = makeStyles({
       },
       card:{
         height:'183px',
-        marginBottom:"20px",
         justifyContent:"start",
         display:"flex",
         flexDirection:"column",
         borderRadius:"10px",
+        marginTop:'20px'
       },
       
       body: {

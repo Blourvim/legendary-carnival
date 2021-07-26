@@ -2,12 +2,9 @@ import axios from 'axios';
 import React, { useState, useEffect, useRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-
 import PostsCard from './PostsCard.js';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
-
 
 
 const useStyles = makeStyles({

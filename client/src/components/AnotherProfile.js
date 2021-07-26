@@ -1,24 +1,42 @@
-import React,{useEffect, useState} from 'react';
-import {Link, useParams} from'react-router-dom';
-import {Container, Typography,} from '@material-ui/core';
+import React,{useEffect, useState,} from 'react';
+import { useParams} from'react-router-dom';
 import axios from 'axios';
 import Profile from './Profile';
+import Grid from '@material-ui/core/Grid'
+import PostsCard from './PostsCard'
+import Container from '@material-ui/core/Container'
+import { makeStyles } from '@material-ui/core/styles';
+
+
+const useStyles = makeStyles({
+    commentField:{
+      position:'sticky',
+      bottom:"0px",
+      height:"80px"
+    },
+    gridItem:{
+    },
+    container:{
+      marginTop:'20px'
+    }
+    })
 
 const AnotherProfile =()=>{
 
     const [userInfo, setUserInfo] = useState(false)
     const { user} = useParams()
+    const classes = useStyles();
+
 
 const url = "http://localhost:4000"
 
     useEffect(()=>{
-        console.log(user)
  axios.get(`${url}/user/${user}`,{withCredentials:true})
  .then(res=>{
      
     console.log(res);
     setUserInfo(res.data);
-
+    console.log(userInfo)
 })
  .catch(err=> console.log(err))
 
@@ -30,9 +48,39 @@ const url = "http://localhost:4000"
 
 return(
 
-<div>
+<Container className={classes.container}maxWidth='sm'>
     <Profile userInfo={userInfo}/>
-</div>
+
+    <Grid container
+    maxWidth='xs'
+    direction="row"
+ justify="center"
+ spacing={1}
+    >
+
+    {userInfo &&
+    userInfo.userInfo.posts.map((post,index)=>{
+   
+                    return(
+                        <Grid item xs={12} key={`profilePost ${index}`}>
+                            <PostsCard post={post}/>
+                        </Grid>
+            
+                    )
+    
+
+
+
+    }) 
+ }
+
+
+
+
+    </Grid>
+
+
+</Container>
 
 
 )
