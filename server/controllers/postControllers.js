@@ -2,15 +2,23 @@ import Tweet from '../models/Schemas/TweetSchema.js';
 import User from '../models/Schemas/UserSchema.js';
 
 export const create = async (req, res) => {
-    const body = req.body.body;
-    const user = req.user.id
+
     try { 
+        const body = req.body.body;
+        const user = req.user.id
+
+
         Tweet.create({ body, user })
         .then(docs=>{
             User.findByIdAndUpdate(user,{'$push':{posts:docs._id}})
             .exec()
         res.json({docs})
         })
+        .catch(err=>{if(err){
+
+            console.log(err)
+
+        }})
     
     
     }
