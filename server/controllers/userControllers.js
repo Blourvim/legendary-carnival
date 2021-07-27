@@ -6,6 +6,7 @@ import passport from 'passport'
 
 
 export const signIn = async(req,res)=>{
+  
   passport.authenticate('local',
  { failureRedirect: '/signin-failure',
   successRedirect:'/data' ,
