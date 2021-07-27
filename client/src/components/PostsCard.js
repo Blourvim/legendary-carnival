@@ -66,7 +66,6 @@ const useStyles = makeStyles({
 const PostsCard=(props)=> {
     const classes = useStyles();
            const {body, user,_id,createdAt,comments,favoritesCount} =  props.post
-           console.log(props)
 
 
     const handlePaw=(postId)=>{

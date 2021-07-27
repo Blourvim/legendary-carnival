@@ -48,9 +48,9 @@ const CreatePost=()=> {
      } 
       )
       .then(function (response) {
-
-        setNewPost(response._id);
-
+        setNewPost(response.data.docs._id);
+        console.log(newPost)
+console.log(response.data.docs._id)
       })
       .catch(function (error) {
         console.log(error);
@@ -60,36 +60,36 @@ const CreatePost=()=> {
   }
 
   return (
-      <Grid  className={classes.grid} container justify = "center">
-          <div className={classes.container}>
-            {newPost && 
-           <Redirect to={`/posts/${newPost}`}/>
-            }
-       
+    
+    <Grid  className={classes.grid} container justify = "center">
+    <div className={classes.container}>
+    {
 
-        
-        
+newPost && <Redirect to={`/posts/${newPost}`}/>
 
-                 <form onSubmit={handleFormSubmit}className={classes.root} noValidate autoComplete="off">
+    }
 
-      <TextField 
-      autoFocus={true}
-      multiline
-      id="filled-basic"
-       name ="body"
-        label="body" 
-        variant="filled" />
+           <form onSubmit={handleFormSubmit}className={classes.root} noValidate autoComplete="off">
+
+<TextField 
+autoFocus={true}
+multiline
+id="filled-basic"
+ name ="body"
+  label="body" 
+  variant="filled" />
 
 
 
 
 <Button type="submit" variant="contained"align="center" color="secondary">Create Post</Button>
 
-    </form>
-    </div>
+</form>
+</div>
 
-    </Grid>
+</Grid>
 
+    
   );
 };
 
