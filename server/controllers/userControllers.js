@@ -25,22 +25,30 @@ export const getUserById = async(req,res)=>{
 
 const userId = req.params.user
 console.log(req.params)
-const userInfo = await UserModal
+
+
+try {
+  const userInfo = await UserModal
 .findById(userId)
 .populate('posts')
 .exec()
 
-
 if(userInfo){
   res.status(200).json({userInfo})
-  console.log(userInfo)
   return
 }
 res.status(404)
 
+
+
+} catch (error) {
+  console.log(error)
+}
+
+
+
 }
 export const validate =async(req,res)=>{
 res.status(200).json({'user':'validated'})
-console.log("validated")
 
 }
