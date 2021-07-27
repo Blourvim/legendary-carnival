@@ -61,8 +61,11 @@ useEffect(()=>{
 
 axios.get(`${url}/post/${id}`)
 .then(res=>{
-    console.log(res)
+    console.log(res.data)
     setPost(res.data)
+})
+.catch(err=>{
+  console.log(err)
 })
 
 
@@ -83,6 +86,18 @@ axios.get(`${url}/post/${id}`)
       }
     
     ).then(function (response) {
+      const tempPost = post
+
+      tempPost.comments.unshift({
+        body:commentField,
+        commenterName: post.user.name
+      }
+
+
+      )
+      setPost(false)
+      setPost(tempPost)
+console.log(post)
       console.log(response);
     })
     .catch(function (error) {

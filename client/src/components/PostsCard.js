@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {Link} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -9,15 +9,14 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import CardHeader from '@material-ui/core/CardHeader';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatBubble from '@material-ui/icons/ChatBubble';
 import Moment from 'react-moment';
-
-
+import {useAuth} from './AuthContext'
+import { Redirect } from 'react-router';
 const useStyles = makeStyles({
     root: {
     },
@@ -67,28 +66,50 @@ const PostsCard=(props)=> {
     const classes = useStyles();
            const {body, user,_id,createdAt,comments,favoritesCount} =  props.post
 
+           const [favoritesCountState, setFavoritesCount] = useState(favoritesCount);
+
+           const [clicked, setClicked] = useState(false)
+        const isAuth = useAuth()
+
+
 
     const handlePaw=(postId)=>{
+
+      if(isAuth){
+        
       const url = "http://localhost:4000"
-        console.log(_id + "liked")
+      console.log(_id + "liked")
       axios.post(`${url}/post/like-post`,
-        {postId:postId},
-        {withCredentials:true}
+      {postId:postId},
+      {withCredentials:true}
       
       ).then(function (response) {
-        console.log(response);
+        console.log(response)
+        if(response.data==="favorited"){
+          setFavoritesCount(favoritesCountState + 1)
+          return
+        }
+        setFavoritesCount(favoritesCountState -1)
+        
+        
       })
       .catch(function (error) {
         console.log(error);
       });
-
+      
+      
+    }else{
+      
+      setClicked(true)
 
 
     }
-
+      
+    }
+    
     return (
       <Card key={`body + ${Math.random()}`} className={classes.card}>
-                <Link className={classes.cardAction} to={`/user/${user}`}>
+                <Link className={classes.cardAction} to={`/user/${user._id}`}>
 
 <CardHeader
 className={classes.cardHeader}
@@ -123,8 +144,9 @@ className={classes.cardHeader}
         </Link>
 
         <CardActions className={classes.actions}>
+          {!isAuth && clicked && <Redirect to='/signin'/>}
           <Button  size="small" color="primary" onClick={()=>{handlePaw(_id)}}>
-          <FavoriteIcon style={{color:"red"}}/>{favoritesCount}
+          <FavoriteIcon style={{color:"red"}}/>{favoritesCountState}
 
           </Button>
 <Link to={`/posts/${_id}`}>

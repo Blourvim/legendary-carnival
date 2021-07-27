@@ -28,8 +28,8 @@ const Comments=(props)=> {
    {props.comments.length !== 0 &&  <List className={classes.root}>
       {props.comments.map((comment,index)=>{
 return(
-  <>
- <ListItem key={comment.id}>
+  <div>
+ <ListItem key={comment.id} >
   <ListItemAvatar>
     <Avatar>
       <ImageIcon />
@@ -38,7 +38,7 @@ return(
   <ListItemText primary={comment.commenterName} secondary={comment.body}/>
 </ListItem>
 {props.comments.length !== 0 && props.comments.length-1 !== index && <Divider variant="inset" component="li" />}
-</>
+</div>
 )
 
       })}
