@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import PostsCard from './PostsCard.js';

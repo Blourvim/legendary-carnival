@@ -2,9 +2,9 @@ import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import { Container, Grid, Typography, Switch, Button} from '@material-ui/core';
+import { Grid, Typography, Switch, Button} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
-import { useAuth, useAuthUpdate } from './AuthContext';
+import {useAuthUpdate } from './AuthContext';
 
 const useStyles = makeStyles((theme) => ({
     container:{

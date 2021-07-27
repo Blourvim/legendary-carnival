@@ -1,8 +1,9 @@
-import React from 'react';
+import React,{ useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
-import { Container, Grid, Typography, Switch, Button} from '@material-ui/core';
+import {Grid,Button} from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
     container:{
@@ -33,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CreatePost=()=> {
   const classes = useStyles();
+  const [newPost, setNewPost] = useState(false)
 
   const url = "http://localhost:4000"
 
@@ -46,7 +48,9 @@ const CreatePost=()=> {
      } 
       )
       .then(function (response) {
-        console.log(response);
+
+        setNewPost(response._id);
+
       })
       .catch(function (error) {
         console.log(error);
@@ -58,6 +62,9 @@ const CreatePost=()=> {
   return (
       <Grid  className={classes.grid} container justify = "center">
           <div className={classes.container}>
+            {newPost && 
+           <Redirect to={`/posts/${newPost}`}/>
+            }
        
 
         

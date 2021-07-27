@@ -110,7 +110,6 @@ axios.get(`${url}/post/${id}`)
 {auth &&
   <Container className={classes.commentField} 
   maxWidth="sm"
-  alignItems='center'
   >
 
 
@@ -129,7 +128,6 @@ axios.get(`${url}/post/${id}`)
     variant='contained'
     size="small" 
     color="primary" 
-    alignSelf='center'
     className={classes.button}
     onClick={() => { handleComment(id, commentField) }}>Comment
     </Button>

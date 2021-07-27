@@ -9,7 +9,7 @@ export const create = async (req, res) => {
         .then(docs=>{
             User.findByIdAndUpdate(user,{'$push':{posts:docs._id}})
             .exec()
-        
+        res.json({docs})
         })
     
     
