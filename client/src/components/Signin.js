@@ -5,6 +5,11 @@ import axios from 'axios';
 import { Grid, Typography, Switch, Button} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import {useAuthUpdate } from './AuthContext';
+import isEmail from 'validator/lib/isEmail';
+import isAlpha from 'validator/lib/isAlpha';
+import isStrongPassword from 'validator/lib/isStrongPassword';
+import isLength from 'validator/lib/isLength';
+
 
 const useStyles = makeStyles((theme) => ({
     container:{
@@ -36,13 +41,59 @@ const Signin=()=> {
   const [state, setState] = useState(true);
   const [success, setSuccess] =useState(false)
   const updateAuth = useAuthUpdate()
-  
+
+  const [emailValue , setEmailValue] =useState("")
+  const [isEmailState, setIsEmailState] =useState(false)
+  const [isEmailStateErr, setIsEmailStateErr] = useState(false)
+
+  const [passwordValue, setPasswordValue] = useState("")
+  const [passwordIsValid, setPasswordIsValid] = useState(false)
+  const [isPasswordStateErr, setIsPasswordStateErr] = useState(false)
+
 
   const url = "http://localhost:4000"
 
+
+  const useHandleEmailValidation=(e)=>{
+
+    setEmailValue(e.target.value)
+    console.log(isEmail(emailValue))
+    if(emailValue.length > 4){
+      setIsEmailStateErr(true)
+    }
+
+
+    if(
+      isEmail(emailValue)
+    ){
+      setIsEmailState(true)
+      return
+    }
+    setIsEmailState(false)
+}
+  const usePasswordValidation=(e)=>{
+
+    setPasswordValue(e.target.value)
+
+    if(passwordValue>3){
+      setIsPasswordStateErr(true)
+
+    }
+
+    if (isLength(passwordValue,{min:8, max: 32}))
+    {
+      setPasswordIsValid(true) 
+      return
+    }
+    
+    setPasswordIsValid(false)
+
+  }
+
+
   const handleChange = (event) => {
-    const test = state
-    setState(!test);
+    const tempState = state
+    setState(!tempState);
   };
 
   const handleFormSubmit =(e)=>{
@@ -100,6 +151,7 @@ const Signin=()=> {
 
 
   }
+
   return (
       <Grid  container justify = "center">
         {
@@ -132,9 +184,17 @@ success && <Redirect to='/'/>
 
                  <form onSubmit={handleFormSubmit}className={classes.root} noValidate autoComplete="off">
 
-      <TextField id="filled-basic" name ="email" label="E-Mail" variant="filled" />
-
-
+      <TextField 
+      onChange={useHandleEmailValidation}
+      
+      id="filled-basic"
+      name ="email"
+      label="E-Mail"
+      variant="filled"
+      error={!state && !isEmailState &&isEmailStateErr}
+      helperText={!state &&isEmailStateErr && !isEmailState && 'Email is not valid'}
+      
+      />
 
       {!state
 && <TextField
@@ -142,26 +202,19 @@ id="standard-password-input"
 name='username'
 label="User Name"
 variant="filled" 
-autoComplete="current-password"
 />}
       <TextField
+      onChange={usePasswordValidation}
           id="standard-password-input"
           label="Password"
           type="password"
           name="password"
           variant="filled" 
           autoComplete="current-password"
+          error ={!state && !passwordIsValid && isPasswordStateErr}
+          helperText={!state && !passwordIsValid && isPasswordStateErr && 'Password is too short'}
         />
-        
-{!state
-&& <TextField
-id="standard-password-input"
-label="Confirm Password"
-type="password"
-variant="filled" 
-autoComplete="current-password"
-/>
-} 
+
 <Button type="submit" variant="contained"align="center" color="secondary">Sign In</Button>
 
     </form>
