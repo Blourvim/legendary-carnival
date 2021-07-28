@@ -73,6 +73,7 @@ newPost && <Redirect to={`/posts/${newPost}`}/>
 
 <TextField 
 autoFocus={true}
+rowsMax={8}
 multiline
 id="filled-basic"
  name ="body"

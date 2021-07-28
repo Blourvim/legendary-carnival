@@ -31,7 +31,6 @@ const useStyles = makeStyles({
         paddingTop:'0px'
       },
       card:{
-        height:'183px',
         justifyContent:"start",
         display:"flex",
         flexDirection:"column",
@@ -40,8 +39,8 @@ const useStyles = makeStyles({
       },
       
       body: {
-        alignSelf: "end",
-        textAlign: "center",
+        wordWrap:'break-word'
+
       },
       
       actions: {
@@ -51,6 +50,7 @@ const useStyles = makeStyles({
 
       },
       cardContent:{
+        heigh:'300px',
         marginTop:"0px",
         paddingTop:'0px',
         paddingBottom:'0px',
@@ -135,7 +135,7 @@ className={classes.cardHeader}
         <CardActionArea  >
      
            
-            <Typography variant="body2" color="textPrimary" component="p">
+            <Typography className={classes.body}variant="body2" color="textPrimary" component="p">
               {body}
             </Typography>
 
