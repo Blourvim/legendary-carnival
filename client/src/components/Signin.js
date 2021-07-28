@@ -1,13 +1,16 @@
 import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
+import InputLabel from '@material-ui/core/InputLabel';
+import FilledInput from '@material-ui/core/FilledInput';
 import axios from 'axios';
-import { Grid, Typography, Switch, Button} from '@material-ui/core';
+import { Grid, Typography, Switch, Button, FormControl, InputAdornment, IconButton} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import {useAuthUpdate } from './AuthContext';
 import isEmail from 'validator/lib/isEmail';
-import isAlpha from 'validator/lib/isAlpha';
-import isStrongPassword from 'validator/lib/isStrongPassword';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
+
 import isLength from 'validator/lib/isLength';
 
 
@@ -49,6 +52,7 @@ const Signin=()=> {
   const [passwordValue, setPasswordValue] = useState("")
   const [passwordIsValid, setPasswordIsValid] = useState(false)
   const [isPasswordStateErr, setIsPasswordStateErr] = useState(false)
+  const [showPassword, setShowPassword] =useState(false)
 
 
   const url = "http://localhost:4000"
@@ -90,10 +94,13 @@ const Signin=()=> {
 
   }
 
+  const handleClickShowPassword=()=>{
+    setShowPassword(!showPassword)
+  }
 
-  const handleChange = (event) => {
-    const tempState = state
-    setState(!tempState);
+
+  const handleChange = () => {
+    setState(!state);
   };
 
   const handleFormSubmit =(e)=>{
@@ -152,6 +159,7 @@ const Signin=()=> {
 
   }
 
+
   return (
       <Grid  container justify = "center">
         {
@@ -198,22 +206,30 @@ success && <Redirect to='/'/>
 
       {!state
 && <TextField
-id="standard-password-input"
+id="username-input"
 name='username'
 label="User Name"
 variant="filled" 
 />}
-      <TextField
-      onChange={usePasswordValidation}
-          id="standard-password-input"
-          label="Password"
-          type="password"
-          name="password"
-          variant="filled" 
-          autoComplete="current-password"
-          error ={!state && !passwordIsValid && isPasswordStateErr}
-          helperText={!state && !passwordIsValid && isPasswordStateErr && 'Password is too short'}
-        />
+<FormControl  variant="filled">
+          <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
+          <FilledInput
+            id="filled-adornment-password"
+            type={showPassword ? 'text' : 'password'}
+            onChange={usePasswordValidation}
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={handleClickShowPassword}
+                  edge="end"
+                >
+                  {showPassword ? <Visibility /> : <VisibilityOff />}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </FormControl>
 
 <Button type="submit" variant="contained"align="center" color="secondary">Sign In</Button>
 
