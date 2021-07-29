@@ -24,3 +24,10 @@ a{
   align-self: center;
   margin-top: -60;
 }
+
+#comment-special-case p {
+  word-wrap:break-word
+
+
+
+}

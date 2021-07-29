@@ -88,7 +88,8 @@ axios.get(`${url}/post/${id}`)
 
       tempPost.comments.unshift({
         body:commentField,
-        commenterName: post.user.name
+        commenterName: post.user.name,
+        _id:Math.random().toString()
       }
 
 

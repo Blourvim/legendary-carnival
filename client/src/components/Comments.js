@@ -18,6 +18,10 @@ const useStyles = makeStyles((theme) => ({
 
 
   },
+  body:{
+    wordWrap:'break-word'
+
+  }
 }));
 
 const Comments=(props)=> {
@@ -25,19 +29,20 @@ const Comments=(props)=> {
 
   return (
     <>
-   {props.comments.length !== 0 &&  <List className={classes.root}>
+   {props.comments.length !== 0 &&  
+   <List className={classes.root}>
       {props.comments.map((comment,index)=>{
 return(
-  <div>
- <ListItem key={comment.id} >
-  <ListItemAvatar>
-    <Avatar>
+  <div key={comment._id} >
+ <ListItem  >
+  <ListItemAvatar >
+    <Avatar >
       <ImageIcon />
     </Avatar>
   </ListItemAvatar>
-  <ListItemText primary={comment.commenterName} secondary={comment.body}/>
+  <ListItemText  id={'comment-special-case'} primary={comment.commenterName} secondary={comment.body}/>
 </ListItem>
-{props.comments.length !== 0 && props.comments.length-1 !== index && <Divider variant="inset" component="li" />}
+{props.comments.length !== 0 && props.comments.length-1 !== index && <Divider  variant="inset" component="li" />}
 </div>
 )
 

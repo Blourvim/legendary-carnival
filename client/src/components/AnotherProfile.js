@@ -50,7 +50,6 @@ return(
     <Profile userInfo={userInfo}/>
 
     <Grid container
-    maxWidth='xs'
     direction="row"
  justify="center"
  spacing={1}
