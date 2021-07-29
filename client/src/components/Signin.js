@@ -42,20 +42,21 @@ marginLeft:'17px'
 const Signin=()=> {
   const classes = useStyles();
   const [state, setState] = useState(true);
-  const [success, setSuccess] =useState(false)
-  const updateAuth = useAuthUpdate()
+  const [success, setSuccess] =useState(false);
+  const [error, setError] = useState(false);
+  const updateAuth = useAuthUpdate();
 
-  const [emailValue , setEmailValue] =useState("")
-  const [isEmailState, setIsEmailState] =useState(false)
-  const [isEmailStateErr, setIsEmailStateErr] = useState(false)
+  const [emailValue , setEmailValue] =useState("");
+  const [isEmailState, setIsEmailState] =useState(false);
+  const [isEmailStateErr, setIsEmailStateErr] = useState(false);
 
-  const [passwordValue, setPasswordValue] = useState("")
-  const [passwordIsValid, setPasswordIsValid] = useState(false)
-  const [isPasswordStateErr, setIsPasswordStateErr] = useState(false)
-  const [showPassword, setShowPassword] =useState(false)
+  const [passwordValue, setPasswordValue] = useState("");
+  const [passwordIsValid, setPasswordIsValid] = useState(false);
+  const [isPasswordStateErr, setIsPasswordStateErr] = useState(false);
+  const [showPassword, setShowPassword] =useState(false);
 
 
-  const url = "http://localhost:4000"
+  const url = "http://localhost:4000";
 
 
   const useHandleEmailValidation=(e)=>{
@@ -77,16 +78,16 @@ const Signin=()=> {
 }
   const usePasswordValidation=(e)=>{
 
-    setPasswordValue(e.target.value)
-
-    if(passwordValue>3){
-      setIsPasswordStateErr(true)
+    setPasswordValue(e.target.value);
+    console.log();
+    if(passwordValue.length > 3 ){
+      setIsPasswordStateErr(true);
 
     }
 
     if (isLength(passwordValue,{min:8, max: 32}))
     {
-      setPasswordIsValid(true) 
+      setPasswordIsValid(true) ;
       return
     }
     
@@ -150,6 +151,7 @@ const Signin=()=> {
       })
       .catch(function (error) {
         console.log(error);
+        setError(error)
       });
 
 
@@ -211,12 +213,18 @@ name='username'
 label="User Name"
 variant="filled" 
 />}
-<FormControl  variant="filled">
+<FormControl  
+
+helperText={'password is too short'}
+
+variant="filled">
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <FilledInput
+          name='password'
             id="filled-adornment-password"
             type={showPassword ? 'text' : 'password'}
             onChange={usePasswordValidation}
+            error={!state && !passwordIsValid && isPasswordStateErr}
             endAdornment={
               <InputAdornment position="end">
                 <IconButton
@@ -235,7 +243,7 @@ variant="filled"
 
     </form>
     </div>
-
+{error}
     </Grid>
 
   );
