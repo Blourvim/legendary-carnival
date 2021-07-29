@@ -27,9 +27,8 @@ export const AuthProvider = ({ children }) => {
 
                 if (res.status !== 401) 
                 {setAuth(true)
-                console.log("auth set to true")}
+            }
                 else{
-                    console.log("auth set to false")
                     setAuth(false);
                     
                 }

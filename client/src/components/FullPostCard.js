@@ -61,7 +61,6 @@ useEffect(()=>{
 
 axios.get(`${url}/post/${id}`)
 .then(res=>{
-    console.log(res.data)
     setPost(res.data)
 })
 .catch(err=>{
@@ -75,7 +74,6 @@ axios.get(`${url}/post/${id}`)
 
     const handleComment=(postId)=>{
       const url = "http://localhost:4000"
-      console.log(`${postId} commented with ${commentField}`)
     axios.post(`${url}/post/add-comment`,
       {
         postId,
@@ -97,8 +95,6 @@ axios.get(`${url}/post/${id}`)
       )
       setPost(false)
       setPost(tempPost)
-console.log(post)
-      console.log(response);
     })
     .catch(function (error) {
       console.log(error);

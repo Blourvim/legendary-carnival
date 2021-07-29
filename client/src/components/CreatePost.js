@@ -49,8 +49,6 @@ const CreatePost=()=> {
       )
       .then(function (response) {
         setNewPost(response.data.docs._id);
-        console.log(newPost)
-console.log(response.data.docs._id)
       })
       .catch(function (error) {
         console.log(error);

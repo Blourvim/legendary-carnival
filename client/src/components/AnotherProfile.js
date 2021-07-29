@@ -34,9 +34,7 @@ const url = "http://localhost:4000"
  axios.get(`${url}/user/${user}`,{withCredentials:true})
  .then(res=>{
      
-    console.log(res);
     setUserInfo(res.data);
-    console.log(userInfo)
 })
  .catch(err=> console.log(err))
 

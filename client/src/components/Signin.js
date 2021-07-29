@@ -66,7 +66,6 @@ const Signin=()=> {
   const useHandleEmailValidation=(e)=>{
 
     setEmailValue(e.target.value)
-    console.log(isEmail(emailValue))
     if(emailValue.length > 4){
       setIsEmailStateErr(true)
     }
@@ -83,7 +82,6 @@ const Signin=()=> {
   const usePasswordValidation=(e)=>{
 
     setPasswordValue(e.target.value);
-    console.log();
     if(passwordValue.length > 3 ){
       setIsPasswordStateErr(true);
 
@@ -123,12 +121,10 @@ const Signin=()=> {
       )
       .then((res)=> {
         if(res.status===200){
-          console.log(res)
           setSuccess(true)
     updateAuth()
 
         };
-        console.log("fail"+res )
 
       })
       .catch(function (error) {
@@ -150,7 +146,6 @@ const Signin=()=> {
      } 
       )
       .then(function (response) {
-        console.log(response?.json?.message);
         setState(true)
 
       })
