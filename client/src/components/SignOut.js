@@ -28,9 +28,8 @@ const SignOut =()=>{
     const test = useAuth()
 
 
-    const url ="http://localhost:5000"
 useEffect(()=>{
-    axios.get(url+"/signout",
+    axios.get("/signout",
     {withCredentials:true})
     .then(res=> res.status===200 && updateAuth() )
     .catch(err=>console.error(err))

@@ -28,10 +28,9 @@ const AnotherProfile =()=>{
     const classes = useStyles();
 
 
-const url = "http://localhost:5000"
 
     useEffect(()=>{
- axios.get(`${url}/user/${user}`,{withCredentials:true})
+ axios.get(`/user/${user}`,{withCredentials:true})
  .then(res=>{
      
     setUserInfo(res.data);

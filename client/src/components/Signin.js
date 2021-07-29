@@ -60,7 +60,6 @@ const Signin=()=> {
   const [showPassword, setShowPassword] =useState(false);
 
 
-  const url = "http://localhost:5000";
 
 
   const useHandleEmailValidation=(e)=>{
@@ -111,7 +110,7 @@ const Signin=()=> {
 
     if(state)  //if Sign In
     {
-      axios.post(`${url}/signin`, {
+      axios.post(`/signin`, {
         username: e.target.email.value,
         password: e.target.password.value
       },
@@ -136,7 +135,7 @@ const Signin=()=> {
     else //if Sign Up
     {  
     
-      axios.post(`${url}/signup`, {
+      axios.post(`/signup`, {
         email: e.target.email.value,
         password: e.target.password.value,
         username:e.target.username.value,

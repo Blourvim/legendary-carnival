@@ -36,11 +36,10 @@ const CreatePost=()=> {
   const classes = useStyles();
   const [newPost, setNewPost] = useState(false)
 
-  const url = "http://localhost:5000"
 
   const handleFormSubmit =(e)=>{
     e.preventDefault()
-      axios.post(`${url}/post/create`, {
+      axios.post(`/post/create`, {
         body: e.target.body.value
       },
      {

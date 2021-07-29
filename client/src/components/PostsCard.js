@@ -76,9 +76,8 @@ const PostsCard=(props)=> {
 
       if(isAuth){
         
-      const url = "http://localhost:5000"
       console.log(_id + "liked")
-      axios.post(`${url}/post/like-post`,
+      axios.post(`/post/like-post`,
       {postId:postId},
       {withCredentials:true}
       
