@@ -7,18 +7,19 @@ const { Schema } = mongoose;
       name: {
           type: String,
           required: true,
-          trim: true
+          trim: true,
+          maxlength: 15
       },
       email: {
           type: String,
           required: true,
           unique: true,
           lowercase: true,
-        //  validate: value => {
-        //      if (!validator.isEmail(value)) {
-        //          throw new Error({error: 'Invalid Email address'})
-        //       }
-        //   }
+         validate: value => {
+             if (!validator.isEmail(value)) {
+                 throw new Error({error: 'Invalid Email address'})
+              }
+          }
       },
       password: {
           type: String,
