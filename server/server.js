@@ -2,8 +2,8 @@ import express from "express";
 import cors  from "cors";
 import dotenv from 'dotenv';
 dotenv.config()
-const PORT = 4000;
-const databaseURI = process.env.DATABASE_URI
+const PORT = process.env.PORT || 4000;
+const databaseURI = process.env.MONGODB_URI
 import mongoose from "mongoose";
 import LocalStrategy from 'passport-local';
 
@@ -60,6 +60,12 @@ const connection = mongoose.connection;
 connection.once("open", function() {
   console.log("Connection with MongoDB was successful");
 });
+
+if(process.env.NODE_ENV ==='production'){
+
+  app.use(express.static('../client/build'))
+
+}
 
 app.listen(PORT, function() {
   console.log("Server is running on Port: " + PORT);
