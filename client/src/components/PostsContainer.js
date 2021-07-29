@@ -27,7 +27,7 @@ const PostsContainer =()=>{
 
   const url = process.env.URL || "http://localhost:5000" 
  useEffect(()=>{
-    axios.get( `${url}/post/get-feed`)
+    axios.get( `/post/get-feed`)
     .then(response=>{
       console.log(response)
       setItems(response.data)
