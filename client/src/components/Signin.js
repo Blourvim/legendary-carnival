@@ -44,6 +44,10 @@ const Signin=()=> {
   const [state, setState] = useState(true);
   const [success, setSuccess] =useState(false);
   const [error, setError] = useState(false);
+  const [signInError, setSignInError] = useState(false);
+
+
+
   const updateAuth = useAuthUpdate();
 
   const [emailValue , setEmailValue] =useState("");
@@ -106,8 +110,7 @@ const Signin=()=> {
 
   const handleFormSubmit =(e)=>{
     e.preventDefault()
-    
-    
+
     if(state)  //if Sign In
     {
       axios.post(`${url}/signin`, {
@@ -130,11 +133,13 @@ const Signin=()=> {
       })
       .catch(function (error) {
         console.log(error);
+        setSignInError(error.response.data.message)
+
       });
     }
     else //if Sign Up
     {  
-
+    
       axios.post(`${url}/signup`, {
         email: e.target.email.value,
         password: e.target.password.value,
@@ -145,13 +150,13 @@ const Signin=()=> {
      } 
       )
       .then(function (response) {
-        console.log(response);
+        console.log(response?.json?.message);
         setState(true)
 
       })
       .catch(function (error) {
-        console.log(error);
-        setError(error)
+        console.log(error?.response?.data?.message);
+        setError(error?.response?.data?.message)
       });
 
 
@@ -200,6 +205,7 @@ success && <Redirect to='/'/>
       id="filled-basic"
       name ="email"
       label="E-Mail"
+      required
       variant="filled"
       error={!state && !isEmailState &&isEmailStateErr}
       helperText={!state &&isEmailStateErr && !isEmailState && 'Email is not valid'}
@@ -221,6 +227,7 @@ variant="filled">
           <InputLabel htmlFor="filled-adornment-password">Password</InputLabel>
           <FilledInput
           name='password'
+          required
             id="filled-adornment-password"
             type={showPassword ? 'text' : 'password'}
             onChange={usePasswordValidation}
@@ -239,11 +246,20 @@ variant="filled">
           />
         </FormControl>
 
-<Button type="submit" variant="contained"align="center" color="secondary">Sign In</Button>
+<Button type="submit" variant="contained"align="center" color="secondary">{state?'Sign In':'Sign Up'}</Button>
+
+{
+//sign in error
+
+state && signInError }
+
+{
+//sign up error
+
+!state && error }
 
     </form>
     </div>
-{error}
     </Grid>
 
   );
