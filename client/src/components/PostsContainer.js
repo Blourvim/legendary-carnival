@@ -25,7 +25,7 @@ const PostsContainer =()=>{
     const [items,setItems] = useState(false);
     const classes = useStyles();
 
-  const url = "http://localhost:4000" 
+  const url = process.env.URL || "http://localhost:5000" 
  useEffect(()=>{
     axios.get( `${url}/post/get-feed`)
     .then(response=>{

@@ -6,7 +6,7 @@ import axios from 'axios';
 
 const UserProfile = React.memo(function ProfileCard() {
     const [user, setUser] = useState(false)
-    const url = "http://localhost:4000"
+    const url = "http://localhost:5000"
     
         useEffect(()=>{
      axios.get(url+"/user",{withCredentials:true})

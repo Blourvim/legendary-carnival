@@ -57,7 +57,7 @@ const [post, setPost] = useState(false)
 const [commentField, setCommentField] = useState()
 
 useEffect(()=>{
-    const url = "http://localhost:4000" 
+    const url = "http://localhost:5000" 
 
 axios.get(`${url}/post/${id}`)
 .then(res=>{
@@ -73,7 +73,7 @@ axios.get(`${url}/post/${id}`)
 
 
     const handleComment=(postId)=>{
-      const url = "http://localhost:4000"
+      const url = "http://localhost:5000"
     axios.post(`${url}/post/add-comment`,
       {
         postId,
