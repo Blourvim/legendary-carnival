@@ -14,7 +14,6 @@ import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ChatBubble from '@material-ui/icons/ChatBubble';
-import Moment from 'react-moment';
 import {useAuth} from './AuthContext'
 import { Redirect } from 'react-router';
 const useStyles = makeStyles({
@@ -125,7 +124,7 @@ className={classes.cardHeader}
         }
     
         title={    <Typography>{props.post.user.name}</Typography>}
-        subheader={<Moment date={createdAt} format={"YYYY/MM/DD HH:MM"}/>}
+        subheader={createdAt}
         
       />
         
