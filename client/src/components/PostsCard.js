@@ -57,6 +57,9 @@ const useStyles = makeStyles({
       },
       cardHeader:{
         paddingBottom:'5px'
+      },
+      avatar:{
+        backgroundColor:'#9966CC'
       }
      
   });
@@ -64,6 +67,10 @@ const useStyles = makeStyles({
 const PostsCard=(props)=> {
     const classes = useStyles();
            const {body, user,_id,createdAt,comments,favoritesCount} =  props.post
+
+            const date = new Date(createdAt)
+
+
 
            const [favoritesCountState, setFavoritesCount] = useState(favoritesCount);
 
@@ -110,8 +117,8 @@ const PostsCard=(props)=> {
 <CardHeader
 className={classes.cardHeader}
         avatar={
-          <Avatar src="https://picsum.photos/200" aria-label="User" >
-            
+          <Avatar className={classes.avatar} aria-label="User" >
+            {props.post.user.name.charAt(0)}
           </Avatar>
         }
         action={
@@ -121,7 +128,7 @@ className={classes.cardHeader}
         }
     
         title={    <Typography>{props.post.user.name}</Typography>}
-        subheader={createdAt}
+        subheader={date.toLocaleString()}     
         
       />
         

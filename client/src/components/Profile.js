@@ -65,7 +65,7 @@ const Profile = (props)=> {
         <Box display={'flex'}>
           <Box p={2} flex={'auto'} className={classes.statBox}>
             <p className={classes.statLabel}>Posts</p>
-            <p className={classes.statValue}>{userInfo?userInfo:"loading..."}</p>
+            <p className={classes.statValue}>{userInfo?userInfo.posts.length:"loading..."}</p>
           </Box>
           <Box p={2} flex={'auto'} className={classes.statBox}>
             <p className={classes.statLabel}>Following</p>

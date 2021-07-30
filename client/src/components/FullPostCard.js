@@ -35,8 +35,7 @@ const useStyles = makeStyles({
       },
       commentField:{
         backgroundColor:'#b1e1cf',
-        borderTopLeftRadius:'14px',
-        borderTopRightRadius:'14px',
+       borderRadius:'14px',
         paddingTop:'5%',
         marginTop:'20px'
       },
