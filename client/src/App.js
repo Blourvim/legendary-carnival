@@ -2,7 +2,7 @@ import './App.css';
 import PostsContainer from './components/PostsContainer';
 import Signin from './components/Signin';
 import CreatePost from './components/CreatePost';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch,HashRouter } from 'react-router-dom';
 import FullPostCard from './components/FullPostCard';
 import SignOut from './components/SignOut';
 import UserProfile from './components/UserProfile'
@@ -15,7 +15,7 @@ function App() {
   return (
     <AuthProvider>
 
-    <Router>
+    <HashRouter>
     <div>
       <MenuAppBar/>
         <Switch>
@@ -49,7 +49,7 @@ function App() {
 
         </Switch>
     </div>
-    </Router>
+    </HashRouter>
     </AuthProvider>
 
   );
