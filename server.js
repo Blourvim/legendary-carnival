@@ -104,13 +104,14 @@ app.use(passport.session());
       methods:['GET', 'PUT', 'POST']
       
       }));
-  // Exprees will serve up production assets
-  app.use(express.static('./client/build'));
+      if (process.env.NODE_ENV === 'production') {
+        app.use(express.static('client/build'));
+      }
+      
 
-  // Express serve up index.html file if it doesn't recognize route
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  });
+      app.get('*', (request, response) => {
+        response.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+      });
 app.use('/api',indexRoutes);
 app.use('/api/post',postRoutes);
 app.use('/api/user',userRoutes);
