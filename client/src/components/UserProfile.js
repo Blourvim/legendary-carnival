@@ -8,7 +8,7 @@ const UserProfile = React.memo(function ProfileCard() {
     const [user, setUser] = useState(false)
     
         useEffect(()=>{
-     axios.get("/user",{withCredentials:true})
+     axios.get("/api/user",{withCredentials:true})
      .then(res=>{
          
         console.log(res);

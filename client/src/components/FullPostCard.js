@@ -58,7 +58,7 @@ const [commentField, setCommentField] = useState()
 
 useEffect(()=>{
 
-axios.get(`/post/${id}`)
+axios.get(`/api/post/${id}`)
 .then(res=>{
     setPost(res.data)
 })
@@ -72,7 +72,7 @@ axios.get(`/post/${id}`)
 
 
     const handleComment=(postId)=>{
-    axios.post(`/post/add-comment`,
+    axios.post(`/api/post/add-comment`,
       {
         postId,
         commentBody:commentField

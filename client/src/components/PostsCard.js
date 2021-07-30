@@ -75,9 +75,7 @@ const PostsCard=(props)=> {
     const handlePaw=(postId)=>{
 
       if(isAuth){
-        
-      console.log(_id + "liked")
-      axios.post(`/post/like-post`,
+      axios.post(`/api/post/like-post`,
       {postId:postId},
       {withCredentials:true}
       

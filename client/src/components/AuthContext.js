@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState(false)
     const checkAuth = () => {
 
-        axios.get('/user/validate', { withCredentials: true })
+        axios.get('/api/user/validate', { withCredentials: true })
             .then(res => {
 
                 if (res.status !== 401) 

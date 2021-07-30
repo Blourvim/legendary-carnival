@@ -26,7 +26,7 @@ const PostsContainer =()=>{
     const classes = useStyles();
 
  useEffect(()=>{
-    axios.get( `/post/get-feed`)
+    axios.get( `/api/post/get-feed`)
     .then(response=>{
       console.log(response)
       setItems(response.data)

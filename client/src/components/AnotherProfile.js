@@ -30,7 +30,7 @@ const AnotherProfile =()=>{
 
 
     useEffect(()=>{
- axios.get(`/user/${user}`,{withCredentials:true})
+ axios.get(`/api/user/${user}`,{withCredentials:true})
  .then(res=>{
      
     setUserInfo(res.data);

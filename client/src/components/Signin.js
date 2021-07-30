@@ -110,7 +110,7 @@ const Signin=()=> {
 
     if(state)  //if Sign In
     {
-      axios.post(`/signin`, {
+      axios.post(`/api/signin`, {
         username: e.target.email.value,
         password: e.target.password.value
       },
@@ -135,7 +135,7 @@ const Signin=()=> {
     else //if Sign Up
     {  
     
-      axios.post(`/signup`, {
+      axios.post(`/api/signup`, {
         email: e.target.email.value,
         password: e.target.password.value,
         username:e.target.username.value,

@@ -29,7 +29,7 @@ const SignOut =()=>{
 
 
 useEffect(()=>{
-    axios.get("/signout",
+    axios.get("/api/signout",
     {withCredentials:true})
     .then(res=> res.status===200 && updateAuth() )
     .catch(err=>console.error(err))

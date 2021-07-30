@@ -110,7 +110,7 @@ app.use(passport.session());
       
       }));
 
-app.use('/',indexRoutes);
-app.use('/post',postRoutes);
-app.use('/user',userRoutes);
+app.use('/api',indexRoutes);
+app.use('/api/post',postRoutes);
+app.use('/api/user',userRoutes);
 
