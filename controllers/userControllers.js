@@ -8,8 +8,8 @@ import passport from 'passport'
 export const signIn = async(req,res)=>{
   
   passport.authenticate('local',
- { failureRedirect: '/signin-failure',
-  successRedirect:'/data' ,
+ { failureRedirect: '/api/signin-failure',
+  successRedirect:'/api/data' ,
 
 }),(err,req,res,next)=>{console.log(err);next()}
 }
@@ -17,7 +17,7 @@ export const signIn = async(req,res)=>{
 
 export const getUser = async(req,res)=>{
   console.log(req.user)
-    res.redirect(`/user/${req.user._id}`)
+    res.redirect(`/api/user/${req.user._id}`)
         
 }
 

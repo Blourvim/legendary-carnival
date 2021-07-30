@@ -39,7 +39,7 @@ const CreatePost=()=> {
 
   const handleFormSubmit =(e)=>{
     e.preventDefault()
-      axios.post(`/post/create`, {
+      axios.post(`/api/post/create`, {
         body: e.target.body.value
       },
      {

@@ -129,7 +129,6 @@ useAuthUpdate()
 
                 </Link>
 
-                <MenuItem onClick={handleClose}>My account</MenuItem>
 
                 <Link to={'/signout'}>
                 <MenuItem onClick={handleClose}>Sign Out</MenuItem>

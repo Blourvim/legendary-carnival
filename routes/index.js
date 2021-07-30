@@ -9,8 +9,8 @@ router.post('/signup',signup)
 
 
 router.post('/signin', function(req, res, next) {
-    passport.authenticate('local', { successRedirect: '/signin-success',
-        failureRedirect: '/signin-failure' })(req, res, next);
+    passport.authenticate('local', { successRedirect: '/api/signin-success',
+        failureRedirect: '/api/signin-failure' })(req, res, next);
 
 });
 
@@ -20,7 +20,7 @@ router.post('/signin', function(req, res, next) {
 })
 
 router.get('/signin-success',(req,res,next)=>{
-    res.send("signin-success");
+    res.status(200).send("signin-success");
 })
 
 

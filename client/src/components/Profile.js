@@ -54,23 +54,22 @@ const useStyles = makeStyles(({ palette }) => ({
 const Profile = (props)=> {
     const classes = useStyles();
     const {userInfo} = props.userInfo
-
     console.log(userInfo)
     return (
       <Card className={classes.card}>
         <CardContent>
-          <Avatar className={classes.avatar} src={'https://i.pravatar.cc/300'} />
+          <Avatar className={classes.avatar}  >?</Avatar>
           <h3 className={classes.heading}>{userInfo?userInfo.name:"loading..."}</h3>
         </CardContent>
         <Divider light />
         <Box display={'flex'}>
           <Box p={2} flex={'auto'} className={classes.statBox}>
-            <p className={classes.statLabel}>Followers</p>
-            <p className={classes.statValue}>{userInfo?userInfo.name:"loading..."}</p>
+            <p className={classes.statLabel}>Posts</p>
+            <p className={classes.statValue}>{userInfo?userInfo:"loading..."}</p>
           </Box>
           <Box p={2} flex={'auto'} className={classes.statBox}>
             <p className={classes.statLabel}>Following</p>
-            <p className={classes.statValue}>12</p>
+            <p className={classes.statValue}>Coming Soon!</p>
           </Box>
         </Box>
       </Card>
