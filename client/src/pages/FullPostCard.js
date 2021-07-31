@@ -37,14 +37,15 @@ const useStyles = makeStyles({
         backgroundColor:'#b1e1cf',
        borderRadius:'14px',
         paddingTop:'5%',
-        marginTop:'20px'
+        marginTop:'20px',
+        alignItems:'end',
+        paddingBottom:'60px'
       },
       button:{
         marginTop:'10px',
         marginBottom:'10px',
         padding:'8px',
-        right:'-80%',
-        left:'auto'
+        float:'right'
       }
   });
   
