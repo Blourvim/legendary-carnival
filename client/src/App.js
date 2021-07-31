@@ -1,10 +1,10 @@
 import './App.css';
 import PostsContainer from './components/PostsContainer';
-import Signin from './components/Signin';
+import Signin from './pages/Signin';
 import CreatePost from './components/CreatePost';
 import { BrowserRouter as Router, Route, Switch,HashRouter } from 'react-router-dom';
 import FullPostCard from './pages/FullPostCard';
-import SignOut from './components/SignOut';
+import SignOut from './pages/SignOut';
 import UserProfile from './pages/UserProfile'
 import MenuAppBar from './components/MenuAppBar';
 import NotFound from './pages/NotFound';

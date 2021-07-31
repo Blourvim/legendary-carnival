@@ -6,7 +6,7 @@ import FilledInput from '@material-ui/core/FilledInput';
 import axios from 'axios';
 import { Grid, Typography, Switch, Button, FormControl, InputAdornment, IconButton} from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
-import {useAuthUpdate } from './AuthContext';
+import {useAuthUpdate } from '../components/AuthContext';
 import isEmail from 'validator/lib/isEmail';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
