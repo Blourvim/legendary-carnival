@@ -54,7 +54,6 @@ const useStyles = makeStyles(({ palette }) => ({
 const Profile = (props)=> {
     const classes = useStyles();
     const {userInfo} = props.userInfo
-    console.log(userInfo)
     return (
       <Card className={classes.card}>
         <CardContent>

@@ -11,7 +11,6 @@ const UserProfile = React.memo(function ProfileCard() {
      axios.get("/api/user",{withCredentials:true})
      .then(res=>{
          
-        console.log(res);
         setUser(res.data.userInfo);
     
     })

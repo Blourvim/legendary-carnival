@@ -67,7 +67,6 @@ const useStyles = makeStyles({
 const PostsCard=(props)=> {
     const classes = useStyles();
            const {body, user,_id,createdAt,comments,favoritesCount} =  props.post
-
             const date = new Date(createdAt)
 
 
@@ -87,7 +86,6 @@ const PostsCard=(props)=> {
       {withCredentials:true}
       
       ).then(function (response) {
-        console.log(response)
         if(response.data==="favorited"){
           setFavoritesCount(favoritesCountState + 1)
           return
@@ -118,7 +116,7 @@ const PostsCard=(props)=> {
 className={classes.cardHeader}
         avatar={
           <Avatar className={classes.avatar} aria-label="User" >
-            {props.post.user.name.charAt(0)}
+            {props.userInfo?.userInfo?.name.charAt(0) ||user.name.charAt(0)}
           </Avatar>
         }
         action={
@@ -127,7 +125,7 @@ className={classes.cardHeader}
           </IconButton>
         }
     
-        title={    <Typography>{props.post.user.name}</Typography>}
+        title={    <Typography>{props.userInfo?.userInfo?.name ||props.post?.user?.name  }</Typography>}
         subheader={date.toLocaleString()}     
         
       />

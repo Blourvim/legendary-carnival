@@ -32,7 +32,6 @@ const AnotherProfile =()=>{
     useEffect(()=>{
  axios.get(`/api/user/${user}`,{withCredentials:true})
  .then(res=>{
-     
     setUserInfo(res.data);
 })
  .catch(err=> console.log(err))
@@ -59,7 +58,7 @@ return(
    
                     return(
                         <Grid item xs={12} key={`profilePost ${index}`}>
-                            <PostsCard post={post}/>
+                            <PostsCard userInfo={userInfo}post={post}/>
                         </Grid>
             
                     )

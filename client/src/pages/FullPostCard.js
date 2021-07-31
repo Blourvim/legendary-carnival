@@ -4,11 +4,11 @@ import {useParams} from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import axios from 'axios';
-import Comments from './Comments';
+import Comments from '../components/Comments';
 import TextField from '@material-ui/core/TextField';
-import PostsCard from './PostsCard';
+import PostsCard from '../components/PostsCard';
 import {Container } from '@material-ui/core';
-import { useAuth } from './AuthContext';
+import { useAuth } from '../components/AuthContext';
 
 
 

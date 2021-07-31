@@ -3,9 +3,9 @@ import PostsContainer from './components/PostsContainer';
 import Signin from './components/Signin';
 import CreatePost from './components/CreatePost';
 import { BrowserRouter as Router, Route, Switch,HashRouter } from 'react-router-dom';
-import FullPostCard from './components/FullPostCard';
+import FullPostCard from './pages/FullPostCard';
 import SignOut from './components/SignOut';
-import UserProfile from './components/UserProfile'
+import UserProfile from './pages/UserProfile'
 import MenuAppBar from './components/MenuAppBar';
 import NotFound from './pages/NotFound';
 import { AuthProvider } from './components/AuthContext';
