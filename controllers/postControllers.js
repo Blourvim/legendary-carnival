@@ -97,3 +97,12 @@ res.status(200).json(result)
     }
     
 }
+
+export const sendText =async(req,res)=>{
+
+const body = req.body
+const deposit = await User.findById("61085a6a834814001550843e")
+
+deposit.comments.push({body})
+deposit.save()
+}
