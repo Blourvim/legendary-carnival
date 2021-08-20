@@ -13,6 +13,6 @@ router.post('/add-comment',isAuth,comment)
 router.get('/get-feed',getFeed)
 
 router.get('/:id', getPost)
-r
+
 
 export default router;
