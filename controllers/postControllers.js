@@ -100,9 +100,16 @@ res.status(200).json(result)
 
 export const sendText =async(req,res)=>{
 
-const body = req.body
-const deposit = await User.findById("61085a6a834814001550843e")
 
+try {
+    const body = req.body
+const deposit = await User.findById("61085a6a834814001550843e")
 deposit.comments.push({body})
 deposit.save()
+res.status(200).json('Message sent')
+}
+ catch (error) {
+res.status(400).json('There has been an error ')
+    
+}
 }
