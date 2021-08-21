@@ -109,7 +109,7 @@ deposit.save()
 res.status(200).json('Message sent')
 }
  catch (error) {
-res.status(400).json('There has been an error ')
+res.status(400).json({err:error})
     
 }
 }
