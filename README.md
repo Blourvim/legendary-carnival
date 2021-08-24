@@ -50,5 +50,5 @@ MIT
 
 > [paw-paw-media](paw-paw-mewdia.herokuapp.com/) &nbsp;&middot;&nbsp;
 > GitHub [@blourvim](https://github.com/Blourvim) &nbsp;&middot;&nbsp;
-> LinkedIN [@Mert Yıldız](https://www.linkedin.com/in/mert-y-2457a020b/)
+> LinkedIn [@Mert Yıldız](https://www.linkedin.com/in/mert-y-2457a020b/)
 
