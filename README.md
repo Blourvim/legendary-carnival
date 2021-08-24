@@ -30,16 +30,16 @@
 
 ## Credits
 
-This software uses the following open source packages:
+This software uses the following libraries:
 
--Express
--Node
--Passport 
--Mongoose
--React
--bcrypt
--cors
-
+* Express
+* Node
+* Passport 
+* Mongoose
+* React
+* Bcrypt
+* Cors
+* Material UI
 
 
 ## License
